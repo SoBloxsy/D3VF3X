@@ -7,7 +7,9 @@ if not game:IsLoaded() then
 	notLoaded.Text = 'D3VF3X is waiting for the game to load'
 	game.Loaded:Wait()
 	notLoaded:Destroy()
+	
 end
+game.Player.LocalPlayer:CharacterAdded:Wait()
 
 --// Instances
 
