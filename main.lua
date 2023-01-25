@@ -8,6 +8,7 @@ if not game:IsLoaded() then
 	game.Loaded:Wait()
 	notLoaded:Destroy()
 end
+
 --// Instances
 
 local d3_v = Instance.new("ScreenGui")
@@ -568,22 +569,6 @@ uipadding_3.PaddingRight = UDim.new(0, 8)
 uipadding_3.PaddingTop = UDim.new(0, 8)
 uipadding_3.Parent = map
 
-local image = Instance.new("TextButton")
-image.Font = Enum.Font.GothamMedium
-image.Text = "image"
-image.TextColor3 = Color3.new(1, 1, 1)
-image.TextSize = 14
-image.BackgroundColor3 = Color3.new(0, 0, 0)
-image.BackgroundTransparency = 0.800000011920929
-image.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-image.BorderSizePixel = 0
-image.LayoutOrder = 5
-image.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
-image.Size = UDim2.new(0, 104, 0, 35)
-image.Visible = true
-image.Name = "image"
-image.Parent = map
-
 local adminremove = Instance.new("TextButton")
 adminremove.Font = Enum.Font.GothamMedium
 adminremove.Text = "remove HD"
@@ -600,97 +585,6 @@ adminremove.Visible = true
 adminremove.Name = "adminremove"
 adminremove.Parent = map
 
-local autobuildhold = Instance.new("Frame")
-autobuildhold.BackgroundColor3 = Color3.new(0.0862745, 0.0862745, 0.0862745)
-autobuildhold.BorderSizePixel = 0
-autobuildhold.LayoutOrder = 9
-autobuildhold.Size = UDim2.new(0, 100, 0, 100)
-autobuildhold.Visible = true
-autobuildhold.Name = "autobuildhold"
-autobuildhold.Parent = map
-
-local autobuildmain = Instance.new("Frame")
-autobuildmain.BackgroundColor3 = Color3.new(0.0862745, 0.0862745, 0.0862745)
-autobuildmain.BorderSizePixel = 0
-autobuildmain.LayoutOrder = 9
-autobuildmain.Size = UDim2.new(0, 231, 0, 57)
-autobuildmain.Visible = true
-autobuildmain.Name = "autobuildmain"
-autobuildmain.Parent = autobuildhold
-
-local uigrid_layout_4 = Instance.new("UIGridLayout")
-uigrid_layout_4.CellSize = UDim2.new(0, 107, 0, 35)
-uigrid_layout_4.FillDirection = Enum.FillDirection.Vertical
-uigrid_layout_4.HorizontalAlignment = Enum.HorizontalAlignment.Center
-uigrid_layout_4.SortOrder = Enum.SortOrder.LayoutOrder
-uigrid_layout_4.VerticalAlignment = Enum.VerticalAlignment.Bottom
-uigrid_layout_4.Parent = autobuildmain
-
-local objectid = Instance.new("TextBox")
-objectid.Font = Enum.Font.GothamBlack
-objectid.PlaceholderText = "object id"
-objectid.Text = ""
-objectid.TextColor3 = Color3.new(1, 1, 1)
-objectid.TextScaled = true
-objectid.TextSize = 14
-objectid.TextWrapped = true
-objectid.BackgroundColor3 = Color3.new(0, 0, 0)
-objectid.BackgroundTransparency = 0.800000011920929
-objectid.BorderSizePixel = 0
-objectid.LayoutOrder = 8
-objectid.Size = UDim2.new(0, 233, 0, 30)
-objectid.Visible = true
-objectid.Name = "objectid"
-objectid.Parent = autobuildmain
-
-local uitext_size_constraint_2 = Instance.new("UITextSizeConstraint")
-uitext_size_constraint_2.MaxTextSize = 16
-uitext_size_constraint_2.Parent = objectid
-
-local build = Instance.new("TextButton")
-build.Font = Enum.Font.GothamMedium
-build.Text = "BUILD"
-build.TextColor3 = Color3.new(1, 1, 1)
-build.TextSize = 14
-build.BackgroundColor3 = Color3.new(0, 0, 0)
-build.BackgroundTransparency = 0.800000011920929
-build.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-build.BorderSizePixel = 0
-build.LayoutOrder = 9
-build.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
-build.Size = UDim2.new(0, 104, 0, 35)
-build.Visible = true
-build.Name = "build"
-build.Parent = autobuildmain
-
-local uipadding_4 = Instance.new("UIPadding")
-uipadding_4.PaddingBottom = UDim.new(0, 6)
-uipadding_4.PaddingLeft = UDim.new(0, 6)
-uipadding_4.PaddingRight = UDim.new(0, 6)
-uipadding_4.PaddingTop = UDim.new(0, 6)
-uipadding_4.Parent = autobuildmain
-
-local text_label_2 = Instance.new("TextLabel")
-text_label_2.Font = Enum.Font.GothamMedium
-text_label_2.Text = "autobuild"
-text_label_2.TextColor3 = Color3.new(1, 1, 1)
-text_label_2.TextSize = 9
-text_label_2.TextWrapped = true
-text_label_2.TextXAlignment = Enum.TextXAlignment.Left
-text_label_2.BackgroundColor3 = Color3.new(1, 1, 1)
-text_label_2.BackgroundTransparency = 1
-text_label_2.BorderSizePixel = 0
-text_label_2.Size = UDim2.new(0, 231, 0, 16)
-text_label_2.Visible = true
-text_label_2.Parent = autobuildhold
-
-local uipadding_5 = Instance.new("UIPadding")
-uipadding_5.PaddingBottom = UDim.new(0, 6)
-uipadding_5.PaddingLeft = UDim.new(0, 6)
-uipadding_5.PaddingRight = UDim.new(0, 6)
-uipadding_5.PaddingTop = UDim.new(0, 6)
-uipadding_5.Parent = text_label_2
-
 local settings = Instance.new("Frame")
 settings.AnchorPoint = Vector2.new(0.5, 0.5)
 settings.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -703,18 +597,18 @@ settings.Visible = true
 settings.Name = "settings"
 settings.Parent = pagemenu
 
-local uigrid_layout_5 = Instance.new("UIGridLayout")
-uigrid_layout_5.CellSize = UDim2.new(0, 230, 0, 35)
-uigrid_layout_5.HorizontalAlignment = Enum.HorizontalAlignment.Center
-uigrid_layout_5.SortOrder = Enum.SortOrder.LayoutOrder
-uigrid_layout_5.Parent = settings
+local uigrid_layout_4 = Instance.new("UIGridLayout")
+uigrid_layout_4.CellSize = UDim2.new(0, 230, 0, 35)
+uigrid_layout_4.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uigrid_layout_4.SortOrder = Enum.SortOrder.LayoutOrder
+uigrid_layout_4.Parent = settings
 
-local uipadding_6 = Instance.new("UIPadding")
-uipadding_6.PaddingBottom = UDim.new(0, 8)
-uipadding_6.PaddingLeft = UDim.new(0, 8)
-uipadding_6.PaddingRight = UDim.new(0, 8)
-uipadding_6.PaddingTop = UDim.new(0, 8)
-uipadding_6.Parent = settings
+local uipadding_4 = Instance.new("UIPadding")
+uipadding_4.PaddingBottom = UDim.new(0, 8)
+uipadding_4.PaddingLeft = UDim.new(0, 8)
+uipadding_4.PaddingRight = UDim.new(0, 8)
+uipadding_4.PaddingTop = UDim.new(0, 8)
+uipadding_4.Parent = settings
 
 local hdmode = Instance.new("TextButton")
 hdmode.Font = Enum.Font.GothamMedium
@@ -793,12 +687,12 @@ explorerscroll.Visible = true
 explorerscroll.Name = "explorerscroll"
 explorerscroll.Parent = explorer
 
-local uipadding_7 = Instance.new("UIPadding")
-uipadding_7.PaddingBottom = UDim.new(0, 4)
-uipadding_7.PaddingLeft = UDim.new(0, 4)
-uipadding_7.PaddingRight = UDim.new(0, 4)
-uipadding_7.PaddingTop = UDim.new(0, 4)
-uipadding_7.Parent = explorerscroll
+local uipadding_5 = Instance.new("UIPadding")
+uipadding_5.PaddingBottom = UDim.new(0, 4)
+uipadding_5.PaddingLeft = UDim.new(0, 4)
+uipadding_5.PaddingRight = UDim.new(0, 4)
+uipadding_5.PaddingTop = UDim.new(0, 4)
+uipadding_5.Parent = explorerscroll
 
 local explorerscript = Instance.new("LocalScript")
 explorerscript.Name = "explorer script"
@@ -942,9 +836,9 @@ rename.Visible = true
 rename.Name = "rename"
 rename.Parent = buttons
 
-local uitext_size_constraint_3 = Instance.new("UITextSizeConstraint")
-uitext_size_constraint_3.MaxTextSize = 14
-uitext_size_constraint_3.Parent = rename
+local uitext_size_constraint_2 = Instance.new("UITextSizeConstraint")
+uitext_size_constraint_2.MaxTextSize = 14
+uitext_size_constraint_2.Parent = rename
 
 local uilist_layout_3 = Instance.new("UIListLayout")
 uilist_layout_3.Padding = UDim.new(0, 2)
@@ -979,12 +873,12 @@ local dragify = Instance.new("LocalScript")
 dragify.Name = "Dragify"
 dragify.Parent = frame
 
-local uipadding_8 = Instance.new("UIPadding")
-uipadding_8.PaddingBottom = UDim.new(0, 6)
-uipadding_8.PaddingLeft = UDim.new(0, 6)
-uipadding_8.PaddingRight = UDim.new(0, 6)
-uipadding_8.PaddingTop = UDim.new(0, 6)
-uipadding_8.Parent = frame
+local uipadding_6 = Instance.new("UIPadding")
+uipadding_6.PaddingBottom = UDim.new(0, 6)
+uipadding_6.PaddingLeft = UDim.new(0, 6)
+uipadding_6.PaddingRight = UDim.new(0, 6)
+uipadding_6.PaddingTop = UDim.new(0, 6)
+uipadding_6.Parent = frame
 
 local uicorner = Instance.new("UICorner")
 uicorner.CornerRadius = UDim.new(0, 4)
@@ -1135,20 +1029,20 @@ local modules = {
 			})
 		end
 		
-		function F3XFUNCTIONS.getPlayer(character)
+		function F3XFUNCTIONS.getPlayer(character, text)
 			player = {}
-			if character then
+			if character ~= nil then
 				return {character.Name}
 			else
 		
-				stringtxt = script.Parent["commands page"].player.Text
-				if stringtxt == 'all' then
+				text = script.Parent["commands page"].player.Text
+				if text == 'all' then
 					for num, plr in ipairs(game.Players:GetChildren()) do
 						table.insert(player, plr.Name)
 					end
 				else
 					for Int, Index in pairs(game.Players:GetChildren()) do
-						if string.match(string.lower(Index.Name), string.lower(stringtxt)) then
+						if string.match(string.lower(Index.Name), string.lower(text)) then
 							table.insert(player, Index.Name)
 						end
 					end
@@ -1389,11 +1283,12 @@ task.spawn(function()
 	
 	
 	local commandpage = script.Parent["commands page"]
+	local stringtxt = commandpage.player.Text
 	
 	--player commands
 	
-	function killplr(character)
-		for _, player in pairs(F3XFUNCTIONS.getPlayer(character)) do
+	function killplr(character, text)
+		for _, player in pairs(F3XFUNCTIONS.getPlayer(character, text)) do
 			local char = game:GetService('Players')[player].Character
 			if char and char:FindFirstChild('Head') then
 				local head = char.Head
@@ -1402,9 +1297,9 @@ task.spawn(function()
 		end
 	end
 	
-	function punishplr(character)
+	function punishplr(character, text)
 	
-		for _, player in pairs(F3XFUNCTIONS.getPlayer(character)) do
+		for _, player in pairs(F3XFUNCTIONS.getPlayer(character, text)) do
 			local char = game:GetService('Players')[player].Character
 			F3XFUNCTIONS.remove({char})
 	
@@ -1412,8 +1307,8 @@ task.spawn(function()
 	
 	end
 	
-	function burnplr(character)
-		for _, player in pairs(F3XFUNCTIONS.getPlayer(character)) do
+	function burnplr(character, text)
+		for _, player in pairs(F3XFUNCTIONS.getPlayer(character, text)) do
 			local char = game:GetService('Players')[player].Character
 			if char then
 				for _, part in pairs(char:GetDescendants()) do
@@ -1454,8 +1349,8 @@ task.spawn(function()
 		end
 	end
 	
-	function iceplr(character)
-		for _, player in pairs(F3XFUNCTIONS.getPlayer(character)) do
+	function iceplr(character, text)
+		for _, player in pairs(F3XFUNCTIONS.getPlayer(character, text)) do
 			local char = game:GetService('Players')[player].Character
 			local username = char.Name
 			local hrp = char.HumanoidRootPart
@@ -1496,7 +1391,7 @@ task.spawn(function()
 	end)
 	
 	commandpage.sink.MouseButton1Click:Connect(function()
-		for _, player in pairs(F3XFUNCTIONS.getPlayer()) do
+		for _, player in pairs(F3XFUNCTIONS.getPlayer(nil, stringtxt)) do
 			local char = game:GetService('Players')[player].Character
 			if char and char:FindFirstChild('HumanoidRootPart') then
 				local hrp = char.HumanoidRootPart
@@ -1520,22 +1415,22 @@ task.spawn(function()
 	--billboard
 	commandpage.BillboardGui.Frame.kill.MouseButton1Click:Connect(function()
 		killplr(commandpage.BillboardGui.Adornee.Parent)
-		commandpage.BillboardGui.Adornee = nil
+		commandpage.BillboardGui.Enabled =false
 	end)
 	
 	commandpage.BillboardGui.Frame.punish.MouseButton1Click:Connect(function()
 		punishplr(commandpage.BillboardGui.Adornee.Parent)
-		commandpage.BillboardGui.Adornee = nil
+		commandpage.BillboardGui.Enabled =false
 	end)
 	
 	commandpage.BillboardGui.Frame.ice.MouseButton1Click:Connect(function()
 		iceplr(commandpage.BillboardGui.Adornee.Parent)
-		commandpage.BillboardGui.Adornee = nil
+		commandpage.BillboardGui.Enabled =false
 	end)
 	
 	commandpage.BillboardGui.Frame.burn.MouseButton1Click:Connect(function()
 		burnplr(commandpage.BillboardGui.Adornee.Parent)
-		commandpage.BillboardGui.Adornee = nil
+		commandpage.BillboardGui.Enabled =false
 	end)
 	
 	--map commands
@@ -1736,7 +1631,7 @@ task.spawn(function()
 			if target ~= nil then
 				--if game.Players:GetPlayerFromCharacter(target.Parent) ~= nil then
 				menu.Adornee = target.Parent.Head
-	
+	menu.Enabled = true
 			end
 		end
 	end)
