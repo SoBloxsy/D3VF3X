@@ -1,4 +1,4 @@
--- v 5.0
+-- v 6.0
 COREGUI = game:GetService("CoreGui")
 if not game:IsLoaded() then
 	local notLoaded = Instance.new("Message")
@@ -12,11 +12,13 @@ end
 --// Instances
 
 local d3_v = Instance.new("ScreenGui")
-d3_v.IgnoreGuiInset = false
+d3_v.DisplayOrder = 1
+d3_v.IgnoreGuiInset = true
+d3_v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 d3_v.ResetOnSpawn = false
 d3_v.ZIndexBehavior = Enum.ZIndexBehavior.Global
 d3_v.Name = "D3V"
-d3_v.Parent = COREGUI
+d3_v.Parent = game.Players.LocalPlayer.PlayerGui
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -158,7 +160,7 @@ credit.Parent = credits
 
 local version = Instance.new("TextLabel")
 version.Font = Enum.Font.Gotham
-version.Text = "VERSION 0.5"
+version.Text = "VERSION 0"
 version.TextColor3 = Color3.new(1, 1, 1)
 version.TextScaled = true
 version.TextSize = 14
@@ -189,20 +191,21 @@ explorerbtn.Visible = true
 explorerbtn.Name = "explorerbtn"
 explorerbtn.Parent = scrolling_frame
 
-local text_label = Instance.new("TextLabel")
-text_label.Font = Enum.Font.GothamBlack
-text_label.Text = "D3VF3X 0.5"
-text_label.TextColor3 = Color3.new(1, 1, 1)
-text_label.TextSize = 14
-text_label.TextStrokeTransparency = 0.800000011920929
-text_label.AnchorPoint = Vector2.new(0.5, 0)
-text_label.BackgroundColor3 = Color3.new(1, 1, 1)
-text_label.BackgroundTransparency = 1
-text_label.BorderSizePixel = 0
-text_label.Position = UDim2.new(0.5, 0, 0, 0)
-text_label.Size = UDim2.new(0, 101, 0, 20)
-text_label.Visible = true
-text_label.Parent = frame
+local title_2 = Instance.new("TextLabel")
+title_2.Font = Enum.Font.GothamBlack
+title_2.Text = "D3VF3X 0.5"
+title_2.TextColor3 = Color3.new(1, 1, 1)
+title_2.TextSize = 14
+title_2.TextStrokeTransparency = 0.800000011920929
+title_2.AnchorPoint = Vector2.new(0.5, 0)
+title_2.BackgroundColor3 = Color3.new(1, 1, 1)
+title_2.BackgroundTransparency = 1
+title_2.BorderSizePixel = 0
+title_2.Position = UDim2.new(0.5, 0, 0, 0)
+title_2.Size = UDim2.new(0, 101, 0, 20)
+title_2.Visible = true
+title_2.Name = "title"
+title_2.Parent = frame
 
 local pagemenu = Instance.new("Frame")
 pagemenu.AnchorPoint = Vector2.new(1, 1)
@@ -216,33 +219,33 @@ pagemenu.Visible = true
 pagemenu.Name = "pagemenu"
 pagemenu.Parent = frame
 
-local creditspage = Instance.new("Frame")
-creditspage.AnchorPoint = Vector2.new(0.5, 0.5)
-creditspage.BackgroundColor3 = Color3.new(1, 1, 1)
-creditspage.BackgroundTransparency = 1
-creditspage.BorderSizePixel = 0
-creditspage.LayoutOrder = 1
-creditspage.Position = UDim2.new(0.5, 0, 0.5, 0)
-creditspage.Size = UDim2.new(1, 0, 1, 0)
-creditspage.Visible = true
-creditspage.Name = "credits page"
-creditspage.Parent = pagemenu
+local credits_2 = Instance.new("Frame")
+credits_2.AnchorPoint = Vector2.new(0.5, 0.5)
+credits_2.BackgroundColor3 = Color3.new(1, 1, 1)
+credits_2.BackgroundTransparency = 1
+credits_2.BorderSizePixel = 0
+credits_2.LayoutOrder = 1
+credits_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+credits_2.Size = UDim2.new(1, 0, 1, 0)
+credits_2.Visible = true
+credits_2.Name = "credits"
+credits_2.Parent = pagemenu
 
-local title_2 = Instance.new("TextLabel")
-title_2.Font = Enum.Font.GothamBlack
-title_2.Text = "D3VF3X"
-title_2.TextColor3 = Color3.new(1, 1, 1)
-title_2.TextScaled = true
-title_2.TextSize = 14
-title_2.TextWrapped = true
-title_2.BackgroundColor3 = Color3.new(1, 1, 1)
-title_2.BackgroundTransparency = 1
-title_2.BorderSizePixel = 0
-title_2.Position = UDim2.new(0.100840338, 0, 0.172268912, 0)
-title_2.Size = UDim2.new(0.803212881, 0, 0.210084036, 0)
-title_2.Visible = true
-title_2.Name = "title"
-title_2.Parent = creditspage
+local title_3 = Instance.new("TextLabel")
+title_3.Font = Enum.Font.GothamBlack
+title_3.Text = "D3VF3X"
+title_3.TextColor3 = Color3.new(1, 1, 1)
+title_3.TextScaled = true
+title_3.TextSize = 14
+title_3.TextWrapped = true
+title_3.BackgroundColor3 = Color3.new(1, 1, 1)
+title_3.BackgroundTransparency = 1
+title_3.BorderSizePixel = 0
+title_3.Position = UDim2.new(0.100840338, 0, 0.172268912, 0)
+title_3.Size = UDim2.new(0.803212881, 0, 0.210084036, 0)
+title_3.Visible = true
+title_3.Name = "title"
+title_3.Parent = credits_2
 
 local credit_2 = Instance.new("TextLabel")
 credit_2.Font = Enum.Font.GothamMedium
@@ -258,7 +261,7 @@ credit_2.Position = UDim2.new(0.100840338, 0, 0.382352948, 0)
 credit_2.Size = UDim2.new(0.803212881, 0, 0.126050428, 0)
 credit_2.Visible = true
 credit_2.Name = "credit"
-credit_2.Parent = creditspage
+credit_2.Parent = credits_2
 
 local commandspage = Instance.new("Frame")
 commandspage.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -269,7 +272,7 @@ commandspage.LayoutOrder = 2
 commandspage.Position = UDim2.new(0.52409637, 0, 0.530172408, 0)
 commandspage.Size = UDim2.new(1, 0, 1, 0)
 commandspage.Visible = true
-commandspage.Name = "commands page"
+commandspage.Name = "commandspage"
 commandspage.Parent = pagemenu
 
 local player = Instance.new("TextBox")
@@ -379,107 +382,10 @@ burn.Visible = true
 burn.Name = "burn"
 burn.Parent = commandspage
 
-local billboard_gui = Instance.new("BillboardGui")
-billboard_gui.Active = true
-billboard_gui.AlwaysOnTop = true
-billboard_gui.ClipsDescendants = true
-billboard_gui.LightInfluence = 1
-billboard_gui.MaxDistance = 50
-billboard_gui.Size = UDim2.new(5, 0, 6, 0)
-billboard_gui.StudsOffset = Vector3.new(4, 0, 0)
-billboard_gui.ResetOnSpawn = true
-billboard_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-billboard_gui.Parent = commandspage
-
-local frame_2 = Instance.new("Frame")
-frame_2.AnchorPoint = Vector2.new(0.5, 0.5)
-frame_2.BackgroundColor3 = Color3.new(0.133333, 0.133333, 0.133333)
-frame_2.BorderSizePixel = 0
-frame_2.Position = UDim2.new(0.5, 0, 0.5, 0)
-frame_2.Size = UDim2.new(1, 0, 1, 0)
-frame_2.Visible = true
-frame_2.Parent = billboard_gui
-
 local uigrid_layout = Instance.new("UIGridLayout")
-uigrid_layout.CellPadding = UDim2.new(0.0250000004, 0, 0.0250000004, 0)
-uigrid_layout.CellSize = UDim2.new(1, 0, 0.230000004, 0)
-uigrid_layout.FillDirection = Enum.FillDirection.Vertical
-uigrid_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uigrid_layout.CellSize = UDim2.new(0, 114, 0, 35)
 uigrid_layout.SortOrder = Enum.SortOrder.LayoutOrder
-uigrid_layout.VerticalAlignment = Enum.VerticalAlignment.Center
-uigrid_layout.Parent = frame_2
-
-local kill_2 = Instance.new("TextButton")
-kill_2.Font = Enum.Font.GothamBold
-kill_2.Text = "kill"
-kill_2.TextColor3 = Color3.new(1, 1, 1)
-kill_2.TextScaled = true
-kill_2.TextSize = 14
-kill_2.TextWrapped = true
-kill_2.BackgroundColor3 = Color3.new(0, 0, 0)
-kill_2.BackgroundTransparency = 0.800000011920929
-kill_2.BorderSizePixel = 0
-kill_2.Size = UDim2.new(0, 200, 0, 50)
-kill_2.Visible = true
-kill_2.Name = "kill"
-kill_2.Parent = frame_2
-
-local uipadding_2 = Instance.new("UIPadding")
-uipadding_2.PaddingBottom = UDim.new(0.04500000178813934, 0)
-uipadding_2.PaddingLeft = UDim.new(0.04500000178813934, 0)
-uipadding_2.PaddingRight = UDim.new(0.04500000178813934, 0)
-uipadding_2.PaddingTop = UDim.new(0.04500000178813934, 0)
-uipadding_2.Parent = frame_2
-
-local punish_2 = Instance.new("TextButton")
-punish_2.Font = Enum.Font.GothamBold
-punish_2.Text = "punish"
-punish_2.TextColor3 = Color3.new(1, 1, 1)
-punish_2.TextScaled = true
-punish_2.TextSize = 14
-punish_2.TextWrapped = true
-punish_2.BackgroundColor3 = Color3.new(0, 0, 0)
-punish_2.BackgroundTransparency = 0.800000011920929
-punish_2.BorderSizePixel = 0
-punish_2.Size = UDim2.new(0, 200, 0, 50)
-punish_2.Visible = true
-punish_2.Name = "punish"
-punish_2.Parent = frame_2
-
-local burn_2 = Instance.new("TextButton")
-burn_2.Font = Enum.Font.GothamBold
-burn_2.Text = "burn"
-burn_2.TextColor3 = Color3.new(1, 1, 1)
-burn_2.TextScaled = true
-burn_2.TextSize = 14
-burn_2.TextWrapped = true
-burn_2.BackgroundColor3 = Color3.new(0, 0, 0)
-burn_2.BackgroundTransparency = 0.800000011920929
-burn_2.BorderSizePixel = 0
-burn_2.Size = UDim2.new(0, 200, 0, 50)
-burn_2.Visible = true
-burn_2.Name = "burn"
-burn_2.Parent = frame_2
-
-local ice_2 = Instance.new("TextButton")
-ice_2.Font = Enum.Font.GothamBold
-ice_2.Text = "ice"
-ice_2.TextColor3 = Color3.new(1, 1, 1)
-ice_2.TextScaled = true
-ice_2.TextSize = 14
-ice_2.TextWrapped = true
-ice_2.BackgroundColor3 = Color3.new(0, 0, 0)
-ice_2.BackgroundTransparency = 0.800000011920929
-ice_2.BorderSizePixel = 0
-ice_2.Size = UDim2.new(0, 200, 0, 50)
-ice_2.Visible = true
-ice_2.Name = "ice"
-ice_2.Parent = frame_2
-
-local uigrid_layout_2 = Instance.new("UIGridLayout")
-uigrid_layout_2.CellSize = UDim2.new(0, 114, 0, 35)
-uigrid_layout_2.SortOrder = Enum.SortOrder.LayoutOrder
-uigrid_layout_2.Parent = commandspage
+uigrid_layout.Parent = commandspage
 
 local map = Instance.new("Frame")
 map.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -557,17 +463,17 @@ wipe.Visible = true
 wipe.Name = "wipe"
 wipe.Parent = map
 
-local uigrid_layout_3 = Instance.new("UIGridLayout")
-uigrid_layout_3.CellSize = UDim2.new(0, 114, 0, 35)
-uigrid_layout_3.SortOrder = Enum.SortOrder.LayoutOrder
-uigrid_layout_3.Parent = map
+local uigrid_layout_2 = Instance.new("UIGridLayout")
+uigrid_layout_2.CellSize = UDim2.new(0, 114, 0, 35)
+uigrid_layout_2.SortOrder = Enum.SortOrder.LayoutOrder
+uigrid_layout_2.Parent = map
 
-local uipadding_3 = Instance.new("UIPadding")
-uipadding_3.PaddingBottom = UDim.new(0, 8)
-uipadding_3.PaddingLeft = UDim.new(0, 8)
-uipadding_3.PaddingRight = UDim.new(0, 8)
-uipadding_3.PaddingTop = UDim.new(0, 8)
-uipadding_3.Parent = map
+local uipadding_2 = Instance.new("UIPadding")
+uipadding_2.PaddingBottom = UDim.new(0, 8)
+uipadding_2.PaddingLeft = UDim.new(0, 8)
+uipadding_2.PaddingRight = UDim.new(0, 8)
+uipadding_2.PaddingTop = UDim.new(0, 8)
+uipadding_2.Parent = map
 
 local adminremove = Instance.new("TextButton")
 adminremove.Font = Enum.Font.GothamMedium
@@ -597,18 +503,18 @@ settings.Visible = true
 settings.Name = "settings"
 settings.Parent = pagemenu
 
-local uigrid_layout_4 = Instance.new("UIGridLayout")
-uigrid_layout_4.CellSize = UDim2.new(0, 230, 0, 35)
-uigrid_layout_4.HorizontalAlignment = Enum.HorizontalAlignment.Center
-uigrid_layout_4.SortOrder = Enum.SortOrder.LayoutOrder
-uigrid_layout_4.Parent = settings
+local uigrid_layout_3 = Instance.new("UIGridLayout")
+uigrid_layout_3.CellSize = UDim2.new(0, 230, 0, 35)
+uigrid_layout_3.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uigrid_layout_3.SortOrder = Enum.SortOrder.LayoutOrder
+uigrid_layout_3.Parent = settings
 
-local uipadding_4 = Instance.new("UIPadding")
-uipadding_4.PaddingBottom = UDim.new(0, 8)
-uipadding_4.PaddingLeft = UDim.new(0, 8)
-uipadding_4.PaddingRight = UDim.new(0, 8)
-uipadding_4.PaddingTop = UDim.new(0, 8)
-uipadding_4.Parent = settings
+local uipadding_3 = Instance.new("UIPadding")
+uipadding_3.PaddingBottom = UDim.new(0, 8)
+uipadding_3.PaddingLeft = UDim.new(0, 8)
+uipadding_3.PaddingRight = UDim.new(0, 8)
+uipadding_3.PaddingTop = UDim.new(0, 8)
+uipadding_3.Parent = settings
 
 local hdmode = Instance.new("TextButton")
 hdmode.Font = Enum.Font.GothamMedium
@@ -626,13 +532,6 @@ hdmode.Visible = true
 hdmode.Name = "HDMODE"
 hdmode.Parent = settings
 
-local bool = Instance.new("BoolValue")
-bool.Name = "bool"
-bool.Parent = hdmode
-
-local local_script_2 = Instance.new("LocalScript")
-local_script_2.Parent = settings
-
 local topk3_khud = Instance.new("TextButton")
 topk3_khud.Font = Enum.Font.GothamMedium
 topk3_khud.Text = "TOPK3K HUD"
@@ -649,10 +548,8 @@ topk3_khud.Visible = true
 topk3_khud.Name = "TOPK3KHUD"
 topk3_khud.Parent = settings
 
-local bool_2 = Instance.new("BoolValue")
-bool_2.Value = true
-bool_2.Name = "bool"
-bool_2.Parent = topk3_khud
+local local_script_2 = Instance.new("LocalScript")
+local_script_2.Parent = settings
 
 local uipage_layout = Instance.new("UIPageLayout")
 uipage_layout.EasingStyle = Enum.EasingStyle.Cubic
@@ -687,45 +584,12 @@ explorerscroll.Visible = true
 explorerscroll.Name = "explorerscroll"
 explorerscroll.Parent = explorer
 
-local uipadding_5 = Instance.new("UIPadding")
-uipadding_5.PaddingBottom = UDim.new(0, 4)
-uipadding_5.PaddingLeft = UDim.new(0, 4)
-uipadding_5.PaddingRight = UDim.new(0, 4)
-uipadding_5.PaddingTop = UDim.new(0, 4)
-uipadding_5.Parent = explorerscroll
-
-local explorerscript = Instance.new("LocalScript")
-explorerscript.Name = "explorer script"
-explorerscript.Parent = explorerscroll
-
-local object = Instance.new("ObjectValue")
-object.Name = "object"
-object.Parent = explorerscript
-
-local childtemp = Instance.new("TextButton")
-childtemp.Font = Enum.Font.SourceSans
-childtemp.Text = "Part"
-childtemp.TextColor3 = Color3.new(1, 1, 1)
-childtemp.TextSize = 14
-childtemp.TextXAlignment = Enum.TextXAlignment.Left
-childtemp.BackgroundColor3 = Color3.new(0, 0, 0)
-childtemp.BackgroundTransparency = 0.800000011920929
-childtemp.BorderSizePixel = 0
-childtemp.Position = UDim2.new(0.0875902623, 0, 0, 0)
-childtemp.Size = UDim2.new(0.912409723, 0, 0, 20)
-childtemp.Visible = true
-childtemp.Name = "childtemp"
-childtemp.Parent = explorerscript
-
-local uistroke = Instance.new("UIStroke")
-uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-uistroke.Color = Color3.new(1, 1, 1)
-uistroke.Thickness = 2
-uistroke.Parent = childtemp
-
-local obj = Instance.new("ObjectValue")
-obj.Name = "obj"
-obj.Parent = childtemp
+local uipadding_4 = Instance.new("UIPadding")
+uipadding_4.PaddingBottom = UDim.new(0, 4)
+uipadding_4.PaddingLeft = UDim.new(0, 4)
+uipadding_4.PaddingRight = UDim.new(0, 4)
+uipadding_4.PaddingTop = UDim.new(0, 4)
+uipadding_4.Parent = explorerscroll
 
 local exrtemplate = Instance.new("TextButton")
 exrtemplate.Font = Enum.Font.SourceSans
@@ -740,13 +604,13 @@ exrtemplate.Position = UDim2.new(0.0414937772, 0, 0.126315787, 0)
 exrtemplate.Size = UDim2.new(0.949999988, 0, 0, 20)
 exrtemplate.Visible = true
 exrtemplate.Name = "exrtemplate"
-exrtemplate.Parent = explorerscript
+exrtemplate.Parent = uipadding_4
 
-local uistroke_2 = Instance.new("UIStroke")
-uistroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-uistroke_2.Color = Color3.new(1, 1, 1)
-uistroke_2.Thickness = 2
-uistroke_2.Parent = exrtemplate
+local uistroke = Instance.new("UIStroke")
+uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uistroke.Color = Color3.new(1, 1, 1)
+uistroke.Thickness = 2
+uistroke.Parent = exrtemplate
 
 local viewchild = Instance.new("ImageButton")
 viewchild.Image = "rbxassetid://4370337241"
@@ -762,9 +626,38 @@ viewchild.Visible = true
 viewchild.Name = "viewchild"
 viewchild.Parent = exrtemplate
 
+local obj = Instance.new("ObjectValue")
+obj.Name = "obj"
+obj.Parent = exrtemplate
+
+local childtemp = Instance.new("TextButton")
+childtemp.Font = Enum.Font.SourceSans
+childtemp.Text = "Part"
+childtemp.TextColor3 = Color3.new(1, 1, 1)
+childtemp.TextSize = 14
+childtemp.TextXAlignment = Enum.TextXAlignment.Left
+childtemp.BackgroundColor3 = Color3.new(0, 0, 0)
+childtemp.BackgroundTransparency = 0.800000011920929
+childtemp.BorderSizePixel = 0
+childtemp.Position = UDim2.new(0.0875902623, 0, 0, 0)
+childtemp.Size = UDim2.new(0.912409723, 0, 0, 20)
+childtemp.Visible = true
+childtemp.Name = "childtemp"
+childtemp.Parent = uipadding_4
+
+local uistroke_2 = Instance.new("UIStroke")
+uistroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uistroke_2.Color = Color3.new(1, 1, 1)
+uistroke_2.Thickness = 2
+uistroke_2.Parent = childtemp
+
 local obj_2 = Instance.new("ObjectValue")
 obj_2.Name = "obj"
-obj_2.Parent = exrtemplate
+obj_2.Parent = childtemp
+
+local explorerscript = Instance.new("LocalScript")
+explorerscript.Name = "explorerscript"
+explorerscript.Parent = explorerscroll
 
 local uilist_layout_2 = Instance.new("UIListLayout")
 uilist_layout_2.Padding = UDim.new(0, 4)
@@ -873,12 +766,12 @@ local dragify = Instance.new("LocalScript")
 dragify.Name = "Dragify"
 dragify.Parent = frame
 
-local uipadding_6 = Instance.new("UIPadding")
-uipadding_6.PaddingBottom = UDim.new(0, 6)
-uipadding_6.PaddingLeft = UDim.new(0, 6)
-uipadding_6.PaddingRight = UDim.new(0, 6)
-uipadding_6.PaddingTop = UDim.new(0, 6)
-uipadding_6.Parent = frame
+local uipadding_5 = Instance.new("UIPadding")
+uipadding_5.PaddingBottom = UDim.new(0, 6)
+uipadding_5.PaddingLeft = UDim.new(0, 6)
+uipadding_5.PaddingRight = UDim.new(0, 6)
+uipadding_5.PaddingTop = UDim.new(0, 6)
+uipadding_5.Parent = frame
 
 local uicorner = Instance.new("UICorner")
 uicorner.CornerRadius = UDim.new(0, 4)
@@ -886,13 +779,118 @@ uicorner.Parent = frame
 
 local topk3khud = Instance.new("LocalScript")
 topk3khud.Name = "topk3khud"
-topk3khud.Parent = d3_v
+topk3khud.Parent = frame
+
+local popupmenu = Instance.new("BillboardGui")
+popupmenu.Active = true
+popupmenu.AlwaysOnTop = true
+popupmenu.ClipsDescendants = true
+popupmenu.LightInfluence = 1
+popupmenu.MaxDistance = 50
+popupmenu.Size = UDim2.new(5, 0, 6, 0)
+popupmenu.StudsOffset = Vector3.new(4, 0, 0)
+popupmenu.ResetOnSpawn = true
+popupmenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+popupmenu.Name = "popupmenu"
+popupmenu.Parent = d3_v
+
+local frame_2 = Instance.new("Frame")
+frame_2.AnchorPoint = Vector2.new(0.5, 0.5)
+frame_2.BackgroundColor3 = Color3.new(0.133333, 0.133333, 0.133333)
+frame_2.BorderSizePixel = 0
+frame_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+frame_2.Size = UDim2.new(1, 0, 1, 0)
+frame_2.Visible = true
+frame_2.Parent = popupmenu
+
+local uigrid_layout_4 = Instance.new("UIGridLayout")
+uigrid_layout_4.CellPadding = UDim2.new(0.0250000004, 0, 0.0250000004, 0)
+uigrid_layout_4.CellSize = UDim2.new(1, 0, 0.230000004, 0)
+uigrid_layout_4.FillDirection = Enum.FillDirection.Vertical
+uigrid_layout_4.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uigrid_layout_4.SortOrder = Enum.SortOrder.LayoutOrder
+uigrid_layout_4.VerticalAlignment = Enum.VerticalAlignment.Center
+uigrid_layout_4.Parent = frame_2
+
+local kill_2 = Instance.new("TextButton")
+kill_2.Font = Enum.Font.GothamBold
+kill_2.Text = "kill"
+kill_2.TextColor3 = Color3.new(1, 1, 1)
+kill_2.TextScaled = true
+kill_2.TextSize = 14
+kill_2.TextWrapped = true
+kill_2.BackgroundColor3 = Color3.new(0, 0, 0)
+kill_2.BackgroundTransparency = 0.800000011920929
+kill_2.BorderSizePixel = 0
+kill_2.Size = UDim2.new(0, 200, 0, 50)
+kill_2.Visible = true
+kill_2.Name = "kill"
+kill_2.Parent = frame_2
+
+local uipadding_6 = Instance.new("UIPadding")
+uipadding_6.PaddingBottom = UDim.new(0.04500000178813934, 0)
+uipadding_6.PaddingLeft = UDim.new(0.04500000178813934, 0)
+uipadding_6.PaddingRight = UDim.new(0.04500000178813934, 0)
+uipadding_6.PaddingTop = UDim.new(0.04500000178813934, 0)
+uipadding_6.Parent = frame_2
+
+local punish_2 = Instance.new("TextButton")
+punish_2.Font = Enum.Font.GothamBold
+punish_2.Text = "punish"
+punish_2.TextColor3 = Color3.new(1, 1, 1)
+punish_2.TextScaled = true
+punish_2.TextSize = 14
+punish_2.TextWrapped = true
+punish_2.BackgroundColor3 = Color3.new(0, 0, 0)
+punish_2.BackgroundTransparency = 0.800000011920929
+punish_2.BorderSizePixel = 0
+punish_2.Size = UDim2.new(0, 200, 0, 50)
+punish_2.Visible = true
+punish_2.Name = "punish"
+punish_2.Parent = frame_2
+
+local burn_2 = Instance.new("TextButton")
+burn_2.Font = Enum.Font.GothamBold
+burn_2.Text = "burn"
+burn_2.TextColor3 = Color3.new(1, 1, 1)
+burn_2.TextScaled = true
+burn_2.TextSize = 14
+burn_2.TextWrapped = true
+burn_2.BackgroundColor3 = Color3.new(0, 0, 0)
+burn_2.BackgroundTransparency = 0.800000011920929
+burn_2.BorderSizePixel = 0
+burn_2.Size = UDim2.new(0, 200, 0, 50)
+burn_2.Visible = true
+burn_2.Name = "burn"
+burn_2.Parent = frame_2
+
+local ice_2 = Instance.new("TextButton")
+ice_2.Font = Enum.Font.GothamBold
+ice_2.Text = "ice"
+ice_2.TextColor3 = Color3.new(1, 1, 1)
+ice_2.TextScaled = true
+ice_2.TextSize = 14
+ice_2.TextWrapped = true
+ice_2.BackgroundColor3 = Color3.new(0, 0, 0)
+ice_2.BackgroundTransparency = 0.800000011920929
+ice_2.BorderSizePixel = 0
+ice_2.Size = UDim2.new(0, 200, 0, 50)
+ice_2.Visible = true
+ice_2.Name = "ice"
+ice_2.Parent = frame_2
 
 --// Modules
 
 local modules = {
 	[f3xfunctions] = function()
 		local F3XFUNCTIONS = {}
+		
+		F3XFUNCTIONS.version = 0.6
+		
+		F3XFUNCTIONS.f3xsettings = {
+			[1] = {'HDMODE', false},
+			[2] = {'K3KMODE', true}
+		}
 		
 		function notify(txt)
 			print(txt)
@@ -911,13 +909,13 @@ local modules = {
 		function F3XFUNCTIONS.make_request(args)
 			if game.CreatorId ~= 1726662956 then --normal
 				f3x = F3XFUNCTIONS.get_f3x()
-				if f3x == nil and script.Parent.settings.HDMODE.bool.Value == false then
+				if f3x == nil and F3XFUNCTIONS.f3xsettings[2][2] == false then
 					notify('Couldnt find F3X tool')
 					return	
-				elseif f3x == nil and script.Parent.settings.HDMODE.bool.Value == true then
-					ohString1 = ";btools"
+				elseif f3x == nil and F3XFUNCTIONS.f3xsettings[2][2] == true then
+					command = ";btools"
 		
-					game:GetService("ReplicatedStorage").HDAdminClient.Signals.RequestCommand:InvokeServer(ohString1)
+					game:GetService("ReplicatedStorage").HDAdminClient.Signals.RequestCommand:InvokeServer(command)
 					wait()
 					f3x = F3XFUNCTIONS.get_f3x()
 				end
@@ -1030,13 +1028,13 @@ local modules = {
 		end
 		
 		function F3XFUNCTIONS.getPlayer(character, text)
-			player = {}
+			local player = {}
 			if character ~= nil then
 				return {character.Name}
 			else
 		
-				text = script.Parent["commands page"].player.Text
-				if text == 'all' then
+		
+				if string.lower(text) == 'all' then
 					for num, plr in ipairs(game.Players:GetChildren()) do
 						table.insert(player, plr.Name)
 					end
@@ -1049,6 +1047,15 @@ local modules = {
 				end
 			end
 			return player
+		end
+		
+		function F3XFUNCTIONS.getsetting(f3xsetting)
+			for Int, Index in pairs(F3XFUNCTIONS.f3xsettings) do
+				if string.match(string.lower(Index[1]), string.lower(f3xsetting)) then
+					return Index[2]
+				end
+			end
+			return error('cant find')
 		end
 		
 		return F3XFUNCTIONS
@@ -1070,14 +1077,18 @@ task.spawn(function()
 		return oldreq(target)
 	end
 
+	local F3XFUNCTIONS = require(script.Parent.Parent.pagemenu.f3xfunctions) 
+	
+	script.Parent.credits.version.Text = 'VERSION '..F3XFUNCTIONS.version
+	
 	local pagemenu = script.Parent.Parent.pagemenu
 	
 	script.Parent.creditbtn.MouseButton1Click:Connect(function()
-		pagemenu.UIPageLayout:JumpTo(pagemenu["credits page"])
+		pagemenu.UIPageLayout:JumpTo(pagemenu.credits)
 	end)
 	
 	script.Parent.commandsbtn.MouseButton1Click:Connect(function()
-		pagemenu.UIPageLayout:JumpTo(pagemenu["commands page"])
+		pagemenu.UIPageLayout:JumpTo(pagemenu.commandspage)
 	end)
 	
 	script.Parent.mapbtn.MouseButton1Click:Connect(function()
@@ -1105,26 +1116,28 @@ task.spawn(function()
 		return oldreq(target)
 	end
 
-	function color(btn)
-		if btn.bool.Value == true then
+	local F3XFUNCTIONS = require(script.Parent.Parent.f3xfunctions) 
+	
+	function color(btn, Value)
+		if Value == true then
 			btn.TextColor3 = Color3.new(0, 1, 0)
 		else
 			btn.TextColor3 = Color3.new(1, 0, 0)
 		end
 	end
 	
-	for num, btn in pairs(script.Parent:GetChildren()) do
-		if btn:IsA("GuiButton") then
-			btn.MouseButton1Click:Connect(function()
-				btn.bool.Value = not btn.bool.Value
-				color(btn)
-			end)
-			color(btn)
-		end
-	end
+	script.Parent.HDMODE.MouseButton1Click:Connect(function()
+		F3XFUNCTIONS.f3xsettings[1][2] = not F3XFUNCTIONS.f3xsettings[1][2]
+		color(script.Parent.HDMODE, F3XFUNCTIONS.f3xsettings[1][2])
+	end)
+	
+	script.Parent.TOPK3KHUD.MouseButton1Click:Connect(function()
+		F3XFUNCTIONS.f3xsettings[2][2] = not F3XFUNCTIONS.f3xsettings[2][2]
+		color(script.Parent.TOPK3KHUD, F3XFUNCTIONS.f3xsettings[2][2])
+	end)
 end)
 
--- explorer script
+-- explorerscript
 task.spawn(function()
 	local script = explorerscript
 
@@ -1142,7 +1155,7 @@ task.spawn(function()
 	local Security = require(f3x.Core.Security)
 	local bound
 	local allowedlocations = Security.AllowedLocations[1]
-	local selected = script.object
+	local object = Instance
 	local oldsel = nil
 	local rename = script.Parent.Parent.buttons.rename
 	
@@ -1159,7 +1172,7 @@ task.spawn(function()
 		for n, part in ipairs(parentpart:GetChildren()) do
 			local template
 	
-			template = script.childtemp:Clone()
+			template = script.Parent.UIPadding.childtemp:Clone()
 	
 			template.Parent = script.Parent
 			template.Text = part.Name
@@ -1168,13 +1181,13 @@ task.spawn(function()
 			template.UIStroke.Enabled = false
 	
 			template.MouseButton1Click:Connect(function()
-				if selected.Value == nil then
-					selected.Value = template
+				if object == nil then
+					object = template
 				else
-					oldsel = selected.Value
-					selected.Value = template
+					oldsel = object
+					object = template
 				end
-	
+				change()
 			end)
 	
 			template.LayoutOrder =  num
@@ -1183,14 +1196,24 @@ task.spawn(function()
 		end
 	end
 	
+	function change()
+		if oldsel ~= nil then
+			oldsel.UIStroke.Enabled = false
+			object.UIStroke.Enabled = true
+		else
+			object.UIStroke.Enabled = true
+		end
+		rename.Text = object.Text
+	end
+	
 	local function refresh()
 		wipe()
-		selected.Value = nil
+		object = nil
 		oldsel = nil
 		for num, part in ipairs(game.Workspace:GetChildren()) do
 			local template
 	
-			template = script.exrtemplate:Clone()
+			template = script.Parent.UIPadding.exrtemplate:Clone()
 	
 			template.Parent = script.Parent
 			template.Text = part.Name
@@ -1204,15 +1227,16 @@ task.spawn(function()
 			--end)
 	
 			template.MouseButton1Click:Connect(function()
-				if selected.Value == nil then
-					selected.Value = template
+				if object == nil then
+					object = template
 				else
-					oldsel = selected.Value
-					selected.Value = template
+					oldsel = object
+					object = template
 				end
+				change()
 	
 			end)
-			
+	
 			template.viewchild.MouseButton1Click:Connect(function()
 				getpartchildren(part, num)
 			end)
@@ -1223,20 +1247,12 @@ task.spawn(function()
 		end
 	end
 	
-	selected.Changed:Connect(function()
-		if oldsel ~= nil then
-			oldsel.UIStroke.Enabled = false
-			selected.Value.UIStroke.Enabled = true
-		else
-			selected.Value.UIStroke.Enabled = true
-		end
-		rename.Text = selected.Value.Text
-	end)
+	
 	
 	rename.FocusLost:Connect(function()
-		F3XFUNCTIONS.SetName({selected.Value.obj.Value}, rename.Text)
-		selected.Value.Name = rename.Text
-		selected.Value.Text = rename.Text
+		F3XFUNCTIONS.SetName({object.obj.Value}, rename.Text)
+		object.Name = rename.Text
+		object.Text = rename.Text
 	end)
 	
 	script.Parent.Parent.buttons.refresh.MouseButton1Click:Connect(function()
@@ -1246,21 +1262,21 @@ task.spawn(function()
 	local tomove
 	
 	script.Parent.Parent.buttons.setparent.MouseButton1Click:Connect(function()
-		if selected.Value ~= nil then
-			tomove = selected.Value
+		if object ~= nil then
+			tomove = object
 		end
 	end)
 	
 	script.Parent.Parent.buttons.dropchild.MouseButton1Click:Connect(function()
-		if selected.Value ~= nil then
-			F3XFUNCTIONS.setparent({tomove.obj.Value}, selected.Value.obj.Value)
+		if object ~= nil then
+			F3XFUNCTIONS.setparent({tomove.obj.Value}, object.obj.Value)
 		end
 		refresh()
 	end)
 	
 	script.Parent.Parent.buttons.setworkspace.MouseButton1Click:Connect(function()
-		if selected.Value ~= nil then
-			F3XFUNCTIONS.setparent({selected.Value.obj.Value}, workspace)
+		if object ~= nil then
+			F3XFUNCTIONS.setparent({object.obj.Value}, workspace)
 		end
 		refresh()
 	end)
@@ -1282,7 +1298,7 @@ task.spawn(function()
 	
 	
 	
-	local commandpage = script.Parent["commands page"]
+	local commandpage = script.Parent.commandspage
 	local stringtxt = commandpage.player.Text
 	
 	--player commands
@@ -1387,11 +1403,11 @@ task.spawn(function()
 	end
 	
 	commandpage.kill.MouseButton1Click:Connect(function()
-		killplr()
+		killplr(nil, commandpage.player.Text)
 	end)
 	
 	commandpage.sink.MouseButton1Click:Connect(function()
-		for _, player in pairs(F3XFUNCTIONS.getPlayer(nil, stringtxt)) do
+		for _, player in pairs(F3XFUNCTIONS.getPlayer(nil, commandpage.player.Text)) do
 			local char = game:GetService('Players')[player].Character
 			if char and char:FindFirstChild('HumanoidRootPart') then
 				local hrp = char.HumanoidRootPart
@@ -1401,36 +1417,36 @@ task.spawn(function()
 	end)
 	
 	commandpage.punish.MouseButton1Click:Connect(function()
-		punishplr()
+		punishplr(nil, commandpage.player.Text)
 	end)
 	
 	commandpage.ice.MouseButton1Click:Connect(function()
-		iceplr()
+		iceplr(nil, commandpage.player.Text)
 	end)
 	
 	commandpage.burn.MouseButton1Click:Connect(function()
-		burnplr()
+		burnplr(nil, commandpage.player.Text)
 	end)
 	
 	--billboard
-	commandpage.BillboardGui.Frame.kill.MouseButton1Click:Connect(function()
-		killplr(commandpage.BillboardGui.Adornee.Parent)
-		commandpage.BillboardGui.Enabled =false
+	script.Parent.Parent.Parent.popupmenu.Frame.kill.MouseButton1Click:Connect(function()
+		killplr(script.Parent.Parent.Parent.popupmenu.Adornee.Parent)
+		
 	end)
 	
-	commandpage.BillboardGui.Frame.punish.MouseButton1Click:Connect(function()
-		punishplr(commandpage.BillboardGui.Adornee.Parent)
-		commandpage.BillboardGui.Enabled =false
+	script.Parent.Parent.Parent.popupmenu.Frame.punish.MouseButton1Click:Connect(function()
+		punishplr(script.Parent.Parent.Parent.popupmenu.Adornee.Parent)
+		
 	end)
 	
-	commandpage.BillboardGui.Frame.ice.MouseButton1Click:Connect(function()
-		iceplr(commandpage.BillboardGui.Adornee.Parent)
-		commandpage.BillboardGui.Enabled =false
+	script.Parent.Parent.Parent.popupmenu.Frame.ice.MouseButton1Click:Connect(function()
+		iceplr(script.Parent.Parent.Parent.popupmenu.Adornee.Parent)
+		
 	end)
 	
-	commandpage.BillboardGui.Frame.burn.MouseButton1Click:Connect(function()
-		burnplr(commandpage.BillboardGui.Adornee.Parent)
-		commandpage.BillboardGui.Enabled =false
+	script.Parent.Parent.Parent.popupmenu.Frame.burn.MouseButton1Click:Connect(function()
+		burnplr(script.Parent.Parent.Parent.popupmenu.Adornee.Parent)
+		
 	end)
 	
 	--map commands
@@ -1573,40 +1589,14 @@ task.spawn(function()
 		return oldreq(target)
 	end
 
-	local function get_f3x()
-		local lp = game:GetService('Players').LocalPlayer
-		if lp.Character:FindFirstChild('Building Tools') then
-			return lp.Character:FindFirstChild('Building Tools')
-		elseif lp.Backpack:FindFirstChild('Building Tools') then
-			return lp.Backpack:FindFirstChild('Building Tools')
-		end
-		return nil
-	end
+	local F3XFUNCTIONS = require(script.Parent.pagemenu.f3xfunctions) 
 	
-	local function make_request(args)
-		local f3x = get_f3x()
-		if f3x == nil then
-			notify('Couldnt find F3X tool')
-			return
-		end
-	
-		f3x.SyncAPI.ServerEndpoint:InvokeServer(unpack(args))
-	end
-	
-	function checkifenabled()
-		return script.Parent.Frame.pagemenu.settings.TOPK3KHUD.bool.Value
-	end
-	
-	local function remove(part) make_request({[1] = 'Remove', [2] = part}) end
-	
-	
-	
-	local menu = script.Parent.Frame.pagemenu["commands page"].BillboardGui
+	local menu = script.Parent.Parent.popupmenu
 	
 	local mouse = game:GetService('Players').LocalPlayer:GetMouse()
 	--select player
 	mouse.Move:Connect(function(movement)
-		if checkifenabled() == true then
+		if F3XFUNCTIONS.getsetting('K3KMODE') == true then
 			local target = mouse.Target
 			if target ~= nil and target.Parent:FindFirstChildOfClass('Humanoid') then
 				target = target.Parent
@@ -1626,12 +1616,11 @@ task.spawn(function()
 	
 	
 	mouse.Button2Down:Connect(function()
-		if checkifenabled() == true then
+		if F3XFUNCTIONS.getsetting('K3KMODE') == true then
 			local target = mouse.Target
 			if target ~= nil then
 				--if game.Players:GetPlayerFromCharacter(target.Parent) ~= nil then
-				menu.Adornee = target.Parent.Head
-	menu.Enabled = true
+				menu.Adornee = target.Parent.HumanoidRootPart
 			end
 		end
 	end)
