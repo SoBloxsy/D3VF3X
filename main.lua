@@ -9,9 +9,9 @@ if not game:IsLoaded() then
 	notLoaded:Destroy()
 	
 end
+game.Player.LocalPlayer:CharacterAdded:Wait()
 
-
---// Instances
+--/ Instances
 
 local d3_v = Instance.new("ScreenGui")
 d3_v.DisplayOrder = 1
@@ -20,7 +20,7 @@ d3_v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 d3_v.ResetOnSpawn = false
 d3_v.ZIndexBehavior = Enum.ZIndexBehavior.Global
 d3_v.Name = "D3V"
-d3_v.Parent = COREGUI
+d3_v.Parent = game.CoreGui
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -74,9 +74,6 @@ commandsbtn.Size = UDim2.new(1, 0, 0, 35)
 commandsbtn.Visible = true
 commandsbtn.Name = "commandsbtn"
 commandsbtn.Parent = scrolling_frame
-
-local local_script = Instance.new("LocalScript")
-local_script.Parent = scrolling_frame
 
 local mapbtn = Instance.new("TextButton")
 mapbtn.Font = Enum.Font.GothamMedium
@@ -550,9 +547,6 @@ topk3_khud.Visible = true
 topk3_khud.Name = "TOPK3KHUD"
 topk3_khud.Parent = settings
 
-local local_script_2 = Instance.new("LocalScript")
-local_script_2.Parent = settings
-
 local uipage_layout = Instance.new("UIPageLayout")
 uipage_layout.EasingStyle = Enum.EasingStyle.Cubic
 uipage_layout.FillDirection = Enum.FillDirection.Vertical
@@ -657,10 +651,6 @@ local obj_2 = Instance.new("ObjectValue")
 obj_2.Name = "obj"
 obj_2.Parent = childtemp
 
-local explorerscript = Instance.new("LocalScript")
-explorerscript.Name = "explorerscript"
-explorerscript.Parent = explorerscroll
-
 local uilist_layout_2 = Instance.new("UIListLayout")
 uilist_layout_2.Padding = UDim.new(0, 4)
 uilist_layout_2.HorizontalAlignment = Enum.HorizontalAlignment.Right
@@ -756,18 +746,6 @@ setworkspace.Visible = true
 setworkspace.Name = "setworkspace"
 setworkspace.Parent = buttons
 
-local f3xfunctions = Instance.new("ModuleScript")
-f3xfunctions.Name = "f3xfunctions"
-f3xfunctions.Parent = pagemenu
-
-local commands = Instance.new("LocalScript")
-commands.Name = "commands"
-commands.Parent = pagemenu
-
-local dragify = Instance.new("LocalScript")
-dragify.Name = "Dragify"
-dragify.Parent = frame
-
 local uipadding_5 = Instance.new("UIPadding")
 uipadding_5.PaddingBottom = UDim.new(0, 6)
 uipadding_5.PaddingLeft = UDim.new(0, 6)
@@ -779,9 +757,13 @@ local uicorner = Instance.new("UICorner")
 uicorner.CornerRadius = UDim.new(0, 4)
 uicorner.Parent = frame
 
-local topk3khud = Instance.new("LocalScript")
-topk3khud.Name = "topk3khud"
-topk3khud.Parent = frame
+local main = Instance.new("LocalScript")
+main.Name = "main"
+main.Parent = frame
+
+local f3xfunctions = Instance.new("ModuleScript")
+f3xfunctions.Name = "f3xfunctions"
+f3xfunctions.Parent = main
 
 local popupmenu = Instance.new("BillboardGui")
 popupmenu.Active = true
@@ -1067,9 +1049,9 @@ local modules = {
 
 --// Scripts
 
--- LocalScript
+-- main
 task.spawn(function()
-	local script = local_script
+	local script = main
 
 	local oldreq = require
 	local function require(target)
@@ -1079,46 +1061,113 @@ task.spawn(function()
 		return oldreq(target)
 	end
 
-	local F3XFUNCTIONS = require(script.Parent.Parent.pagemenu.f3xfunctions) 
+	local F3XFUNCTIONS = require(script.f3xfunctions) 
+	local pagemenu = script.Parent.pagemenu
+	local pages = script.Parent.ScrollingFrame
+	local settingsp = pagemenu.settings
 	
-	script.Parent.credits.version.Text = 'VERSION '..F3XFUNCTIONS.version
 	
-	local pagemenu = script.Parent.Parent.pagemenu
+	-- << DRAGGIFY >>
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+		dragToggle = nil
+		local dragSpeed = 0
+		dragInput = nil
+		dragStart = nil
+		local dragPos = nil
+		function updateInput(input)
+			local Delta = input.Position - dragStart
+			local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+			game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+		end
+		Frame.InputBegan:Connect(function(input)
+			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+				dragToggle = true
+				dragStart = input.Position
+				startPos = Frame.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragToggle = false
+					end
+				end)
+			end
+		end)
+		Frame.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if input == dragInput and dragToggle then
+				updateInput(input)
+			end
+		end)
+	end
 	
-	script.Parent.creditbtn.MouseButton1Click:Connect(function()
+	dragify(script.Parent)
+	
+	-- << HUD >>
+	
+	local menu = script.Parent.Parent.popupmenu
+	local mouse = game:GetService('Players').LocalPlayer:GetMouse()
+	--select player
+	mouse.Move:Connect(function(movement)
+		if F3XFUNCTIONS.getsetting('K3KMODE') == true then
+			local target = mouse.Target
+			if target ~= nil and target.Parent:FindFirstChildOfClass('Humanoid') then
+				target = target.Parent
+				local selection = Instance.new("SelectionBox", target)
+				selection.Color3 = Color3.new(0.27451, 0.27451, 0.27451)
+				selection.Adornee = target
+	
+				mouse.Move:Connect(function(movement2)
+					local target2 = mouse.Target
+					if target2 ~= target then
+						selection:Destroy()
+					end
+				end)
+			end
+		end
+	end)
+	
+	
+	mouse.Button2Down:Connect(function()
+		if F3XFUNCTIONS.getsetting('K3KMODE') == true then
+			local target = mouse.Target
+			if target ~= nil then
+				--if game.Players:GetPlayerFromCharacter(target.Parent) ~= nil then
+				menu.Adornee = target.Parent.HumanoidRootPart
+			end
+		end
+	end)
+	-- << PAGES >>
+	
+	
+	
+	script.Parent.ScrollingFrame.credits.version.Text = 'VERSION '..F3XFUNCTIONS.version
+	
+	pages.creditbtn.MouseButton1Click:Connect(function()
 		pagemenu.UIPageLayout:JumpTo(pagemenu.credits)
 	end)
 	
-	script.Parent.commandsbtn.MouseButton1Click:Connect(function()
+	pages.commandsbtn.MouseButton1Click:Connect(function()
 		pagemenu.UIPageLayout:JumpTo(pagemenu.commandspage)
 	end)
 	
-	script.Parent.mapbtn.MouseButton1Click:Connect(function()
+	pages.mapbtn.MouseButton1Click:Connect(function()
 		pagemenu.UIPageLayout:JumpTo(pagemenu.map)
 	end)
 	
-	script.Parent.settingsbtn.MouseButton1Click:Connect(function()
+	pages.settingsbtn.MouseButton1Click:Connect(function()
 		pagemenu.UIPageLayout:JumpTo(pagemenu.settings)
 	end)
 	
-	script.Parent.explorerbtn.MouseButton1Click:Connect(function()
+	pages.explorerbtn.MouseButton1Click:Connect(function()
 		pagemenu.UIPageLayout:JumpTo(pagemenu.explorer)
 	end)
-end)
-
--- LocalScript
-task.spawn(function()
-	local script = local_script_2
-
-	local oldreq = require
-	local function require(target)
-		if modules[target] then
-			return modules[target]()
-		end
-		return oldreq(target)
-	end
-
-	local F3XFUNCTIONS = require(script.Parent.Parent.f3xfunctions) 
+	
+	-- << SETTINGS >>
+	
 	
 	function color(btn, Value)
 		if Value == true then
@@ -1128,179 +1177,19 @@ task.spawn(function()
 		end
 	end
 	
-	script.Parent.HDMODE.MouseButton1Click:Connect(function()
+	settingsp.HDMODE.MouseButton1Click:Connect(function()
 		F3XFUNCTIONS.f3xsettings[1][2] = not F3XFUNCTIONS.f3xsettings[1][2]
-		color(script.Parent.HDMODE, F3XFUNCTIONS.f3xsettings[1][2])
+		color(settingsp.HDMODE, F3XFUNCTIONS.f3xsettings[1][2])
 	end)
 	
-	script.Parent.TOPK3KHUD.MouseButton1Click:Connect(function()
+	settingsp.TOPK3KHUD.MouseButton1Click:Connect(function()
 		F3XFUNCTIONS.f3xsettings[2][2] = not F3XFUNCTIONS.f3xsettings[2][2]
-		color(script.Parent.TOPK3KHUD, F3XFUNCTIONS.f3xsettings[2][2])
-	end)
-end)
-
--- explorerscript
-task.spawn(function()
-	local script = explorerscript
-
-	local oldreq = require
-	local function require(target)
-		if modules[target] then
-			return modules[target]()
-		end
-		return oldreq(target)
-	end
-
-	local F3XFUNCTIONS = require(script.Parent.Parent.Parent.f3xfunctions)
-	
-	f3x = F3XFUNCTIONS.get_f3x()
-	local Security = require(f3x.Core.Security)
-	local bound
-	local allowedlocations = Security.AllowedLocations[1]
-	local object = Instance
-	local oldsel = nil
-	local rename = script.Parent.Parent.buttons.rename
-	
-	
-	local function wipe()
-		for num, btn in ipairs(script.Parent:GetChildren()) do
-			if btn:IsA('GuiButton') then
-				btn:Remove()
-			end
-		end
-	end
-	
-	local function getpartchildren(parentpart, num)
-		for n, part in ipairs(parentpart:GetChildren()) do
-			local template
-	
-			template = script.Parent.UIPadding.childtemp:Clone()
-	
-			template.Parent = script.Parent
-			template.Text = part.Name
-			template.Name = part.Name
-			template.obj.Value = part
-			template.UIStroke.Enabled = false
-	
-			template.MouseButton1Click:Connect(function()
-				if object == nil then
-					object = template
-				else
-					oldsel = object
-					object = template
-				end
-				change()
-			end)
-	
-			template.LayoutOrder =  num
-	
-	
-		end
-	end
-	
-	function change()
-		if oldsel ~= nil then
-			oldsel.UIStroke.Enabled = false
-			object.UIStroke.Enabled = true
-		else
-			object.UIStroke.Enabled = true
-		end
-		rename.Text = object.Text
-	end
-	
-	local function refresh()
-		wipe()
-		object = nil
-		oldsel = nil
-		for num, part in ipairs(game.Workspace:GetChildren()) do
-			local template
-	
-			template = script.Parent.UIPadding.exrtemplate:Clone()
-	
-			template.Parent = script.Parent
-			template.Text = part.Name
-			template.Name = part.Name
-			template.obj.Value = part
-			template.UIStroke.Enabled = false
-	
-	
-			--template.FocusLost:Connect(function()
-			--	F3XFUNCTIONS.SetName({part}, template.Text)
-			--end)
-	
-			template.MouseButton1Click:Connect(function()
-				if object == nil then
-					object = template
-				else
-					oldsel = object
-					object = template
-				end
-				change()
-	
-			end)
-	
-			template.viewchild.MouseButton1Click:Connect(function()
-				getpartchildren(part, num)
-			end)
-	
-			template.LayoutOrder =  num
-	
-	
-		end
-	end
-	
-	
-	
-	rename.FocusLost:Connect(function()
-		F3XFUNCTIONS.SetName({object.obj.Value}, rename.Text)
-		object.Name = rename.Text
-		object.Text = rename.Text
+		color(settingsp.TOPK3KHUD, F3XFUNCTIONS.f3xsettings[2][2])
 	end)
 	
-	script.Parent.Parent.buttons.refresh.MouseButton1Click:Connect(function()
-		refresh()
-	end)
+	-- << COMMANDS >>
 	
-	local tomove
-	
-	script.Parent.Parent.buttons.setparent.MouseButton1Click:Connect(function()
-		if object ~= nil then
-			tomove = object
-		end
-	end)
-	
-	script.Parent.Parent.buttons.dropchild.MouseButton1Click:Connect(function()
-		if object ~= nil then
-			F3XFUNCTIONS.setparent({tomove.obj.Value}, object.obj.Value)
-		end
-		refresh()
-	end)
-	
-	script.Parent.Parent.buttons.setworkspace.MouseButton1Click:Connect(function()
-		if object ~= nil then
-			F3XFUNCTIONS.setparent({object.obj.Value}, workspace)
-		end
-		refresh()
-	end)
-end)
-
--- commands
-task.spawn(function()
-	local script = commands
-
-	local oldreq = require
-	local function require(target)
-		if modules[target] then
-			return modules[target]()
-		end
-		return oldreq(target)
-	end
-
-	local F3XFUNCTIONS = require(script.Parent.f3xfunctions)
-	
-	
-	
-	local commandpage = script.Parent.commandspage
+	local commandpage = pagemenu.commandspage
 	local stringtxt = commandpage.player.Text
 	
 	--player commands
@@ -1431,28 +1320,28 @@ task.spawn(function()
 	end)
 	
 	--billboard
-	script.Parent.Parent.Parent.popupmenu.Frame.kill.MouseButton1Click:Connect(function()
-		killplr(script.Parent.Parent.Parent.popupmenu.Adornee.Parent)
-		
+	script.Parent.Parent.popupmenu.Frame.kill.MouseButton1Click:Connect(function()
+		killplr(script.Parent.Parent.popupmenu.Adornee.Parent)
+	
 	end)
 	
-	script.Parent.Parent.Parent.popupmenu.Frame.punish.MouseButton1Click:Connect(function()
-		punishplr(script.Parent.Parent.Parent.popupmenu.Adornee.Parent)
-		
+	script.Parent.Parent.popupmenu.Frame.punish.MouseButton1Click:Connect(function()
+		punishplr(script.Parent.Parent.popupmenu.Adornee.Parent)
+	
 	end)
 	
-	script.Parent.Parent.Parent.popupmenu.Frame.ice.MouseButton1Click:Connect(function()
-		iceplr(script.Parent.Parent.Parent.popupmenu.Adornee.Parent)
-		
+	script.Parent.Parent.popupmenu.Frame.ice.MouseButton1Click:Connect(function()
+		iceplr(script.Parent.Parent.popupmenu.Adornee.Parent)
+	
 	end)
 	
-	script.Parent.Parent.Parent.popupmenu.Frame.burn.MouseButton1Click:Connect(function()
-		burnplr(script.Parent.Parent.Parent.popupmenu.Adornee.Parent)
-		
+	script.Parent.Parent.popupmenu.Frame.burn.MouseButton1Click:Connect(function()
+		burnplr(script.Parent.Parent.popupmenu.Adornee.Parent)
+	
 	end)
 	
 	--map commands
-	script.Parent.map.blacked.MouseButton1Click:Connect(function()
+	pagemenu.map.blacked.MouseButton1Click:Connect(function()
 		local tocolor = {}
 		for _, object in ipairs(F3XFUNCTIONS.getparts(true)) do
 			table.insert(tocolor, {
@@ -1464,7 +1353,7 @@ task.spawn(function()
 		F3XFUNCTIONS.make_request({[1] = 'SyncColor', [2] = tocolor})
 	end)
 	
-	script.Parent.map.arson.MouseButton1Click:Connect(function()
+	pagemenu.map.arson.MouseButton1Click:Connect(function()
 		local items = {}
 		local items2 = {}
 		local tocolor = {}
@@ -1491,7 +1380,7 @@ task.spawn(function()
 		F3XFUNCTIONS.make_request({[1] = 'SyncColor', [2] = tocolor})
 	end)
 	
-	script.Parent.map.fog.MouseButton1Click:Connect(function()
+	pagemenu.map.fog.MouseButton1Click:Connect(function()
 		local allparts = F3XFUNCTIONS.getparts(true)
 		local items = {}
 		local items2 = {}
@@ -1512,12 +1401,12 @@ task.spawn(function()
 		F3XFUNCTIONS.make_request({[1] = 'SyncDecorate', [2] = items2})
 	end)
 	
-	script.Parent.map.wipe.MouseButton1Click:Connect(function()
+	pagemenu.map.wipe.MouseButton1Click:Connect(function()
 		local items = F3XFUNCTIONS.getparts()
 		F3XFUNCTIONS.remove(items)
 	end)
 	
-	script.Parent.map.adminremove.MouseButton1Click:Connect(function()
+	pagemenu.map.adminremove.MouseButton1Click:Connect(function()
 		local items = {}
 		for _, object in ipairs(game.Workspace:GetChildren()) do
 			if object:IsA("Folder") then
@@ -1526,105 +1415,136 @@ task.spawn(function()
 		end
 		F3XFUNCTIONS.remove(items)
 	end)
-end)
-
--- Dragify
-task.spawn(function()
-	local script = dragify
-
-	local oldreq = require
-	local function require(target)
-		if modules[target] then
-			return modules[target]()
-		end
-		return oldreq(target)
-	end
-
-	local UIS = game:GetService("UserInputService")
-	function dragify(Frame)
-	    dragToggle = nil
-	    local dragSpeed = 0
-	    dragInput = nil
-	    dragStart = nil
-	    local dragPos = nil
-	    function updateInput(input)
-	        local Delta = input.Position - dragStart
-	        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-	        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
-	    end
-	    Frame.InputBegan:Connect(function(input)
-	        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
-	            dragToggle = true
-	            dragStart = input.Position
-	            startPos = Frame.Position
-	            input.Changed:Connect(function()
-	                if input.UserInputState == Enum.UserInputState.End then
-	                    dragToggle = false
-	                end
-	            end)
-	        end
-	    end)
-	    Frame.InputChanged:Connect(function(input)
-	        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-	            dragInput = input
-	        end
-	    end)
-	    game:GetService("UserInputService").InputChanged:Connect(function(input)
-	        if input == dragInput and dragToggle then
-	            updateInput(input)
-	        end
-	    end)
-	end
 	
-	dragify(script.Parent)
-end)
-
--- topk3khud
-task.spawn(function()
-	local script = topk3khud
-
-	local oldreq = require
-	local function require(target)
-		if modules[target] then
-			return modules[target]()
-		end
-		return oldreq(target)
-	end
-
-	local F3XFUNCTIONS = require(script.Parent.pagemenu.f3xfunctions) 
+	-- << EXPLORER >>
 	
-	local menu = script.Parent.Parent.popupmenu
+	f3x = F3XFUNCTIONS.get_f3x()
+	local Security = require(f3x.Core.Security)
+	local bound
+	local allowedlocations = Security.AllowedLocations[1]
+	local object = Instance
+	local oldsel = nil
+	local rename = pagemenu.explorer.buttons.rename
 	
-	local mouse = game:GetService('Players').LocalPlayer:GetMouse()
-	--select player
-	mouse.Move:Connect(function(movement)
-		if F3XFUNCTIONS.getsetting('K3KMODE') == true then
-			local target = mouse.Target
-			if target ~= nil and target.Parent:FindFirstChildOfClass('Humanoid') then
-				target = target.Parent
-				local selection = Instance.new("SelectionBox", target)
-				selection.Color3 = Color3.new(0.27451, 0.27451, 0.27451)
-				selection.Adornee = target
 	
-				mouse.Move:Connect(function(movement2)
-					local target2 = mouse.Target
-					if target2 ~= target then
-						selection:Destroy()
-					end
-				end)
+	local function wipe()
+		for num, btn in ipairs(script.Parent:GetChildren()) do
+			if btn:IsA('GuiButton') then
+				btn:Remove()
 			end
+		end
+	end
+	
+	local function getpartchildren(parentpart, num)
+		for n, part in ipairs(parentpart:GetChildren()) do
+			local template
+	
+			template = pagemenu.explorer.explorerscroll.UIPadding.childtemp:Clone()
+	
+			template.Parent = pagemenu.explorer.explorerscroll
+			template.Text = part.Name
+			template.Name = part.Name
+			template.obj.Value = part
+			template.UIStroke.Enabled = false
+	
+			template.MouseButton1Click:Connect(function()
+				if object == nil then
+					object = template
+				else
+					oldsel = object
+					object = template
+				end
+				change()
+			end)
+	
+			template.LayoutOrder =  num
+	
+	
+		end
+	end
+	
+	function change()
+		if oldsel ~= nil then
+			oldsel.UIStroke.Enabled = false
+			object.UIStroke.Enabled = true
+		else
+			object.UIStroke.Enabled = true
+		end
+		rename.Text = object.Text
+	end
+	
+	local function refresh()
+		wipe()
+		object = nil
+		oldsel = nil
+		for num, part in ipairs(game.Workspace:GetChildren()) do
+			local template
+	
+			template = pagemenu.explorer.explorerscroll.UIPadding.exrtemplate:Clone()
+	
+			template.Parent = pagemenu.explorer.explorerscroll
+			template.Text = part.Name
+			template.Name = part.Name
+			template.obj.Value = part
+			template.UIStroke.Enabled = false
+	
+	
+			--template.FocusLost:Connect(function()
+			--	F3XFUNCTIONS.SetName({part}, template.Text)
+			--end)
+	
+			template.MouseButton1Click:Connect(function()
+				if object == nil then
+					object = template
+				else
+					oldsel = object
+					object = template
+				end
+				change()
+	
+			end)
+	
+			template.viewchild.MouseButton1Click:Connect(function()
+				getpartchildren(part, num)
+			end)
+	
+			template.LayoutOrder =  num
+	
+	
+		end
+	end
+	
+	
+	
+	rename.FocusLost:Connect(function()
+		F3XFUNCTIONS.SetName({object.obj.Value}, rename.Text)
+		object.Name = rename.Text
+		object.Text = rename.Text
+	end)
+	
+	pagemenu.explorer.buttons.refresh.MouseButton1Click:Connect(function()
+		refresh()
+	end)
+	
+	local tomove
+	
+	pagemenu.explorer.buttons.setparent.MouseButton1Click:Connect(function()
+		if object ~= nil then
+			tomove = object
 		end
 	end)
 	
-	
-	mouse.Button2Down:Connect(function()
-		if F3XFUNCTIONS.getsetting('K3KMODE') == true then
-			local target = mouse.Target
-			if target ~= nil then
-				--if game.Players:GetPlayerFromCharacter(target.Parent) ~= nil then
-				menu.Adornee = target.Parent.HumanoidRootPart
-			end
+	pagemenu.explorer.buttons.dropchild.MouseButton1Click:Connect(function()
+		if object ~= nil then
+			F3XFUNCTIONS.setparent({tomove.obj.Value}, object.obj.Value)
 		end
+		refresh()
 	end)
 	
+	pagemenu.explorer.buttons.setworkspace.MouseButton1Click:Connect(function()
+		if object ~= nil then
+			F3XFUNCTIONS.setparent({object.obj.Value}, workspace)
+		end
+		refresh()
+	end)
 end)
