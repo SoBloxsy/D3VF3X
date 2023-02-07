@@ -9,7 +9,6 @@ if not game:IsLoaded() then
 	notLoaded:Destroy()
 	
 end
-game.Player.LocalPlayer:CharacterAdded:Wait()
 
 --/ Instances
 
