@@ -1,5 +1,11 @@
+
 # D3XF3X
-a testing tool for building tool F3X
+a testing tool for F3X building tools.
+
+**Features**
+ - Player Commands
+ - Map Commands
+ - Explorer
 
 ## Script
 ```lua
