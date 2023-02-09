@@ -1,4 +1,4 @@
--- v 6.0
+-- v 7.0
 COREGUI = game:GetService("CoreGui")
 if not game:IsLoaded() then
 	local notLoaded = Instance.new("Message")
@@ -9,8 +9,7 @@ if not game:IsLoaded() then
 	notLoaded:Destroy()
 	
 end
-
---/ Instances
+game.Player.LocalPlayer:CharacterAdded:Wait()
 
 local d3_v = Instance.new("ScreenGui")
 d3_v.DisplayOrder = 1
@@ -19,7 +18,7 @@ d3_v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 d3_v.ResetOnSpawn = false
 d3_v.ZIndexBehavior = Enum.ZIndexBehavior.Global
 d3_v.Name = "D3V"
-d3_v.Parent = game.CoreGui
+d3_v.Parent = game.Players.LocalPlayer.PlayerGui
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -168,10 +167,26 @@ version.BackgroundColor3 = Color3.new(1, 1, 1)
 version.BackgroundTransparency = 1
 version.BorderSizePixel = 0
 version.Position = UDim2.new(0.5, 0, 1, 0)
-version.Size = UDim2.new(0.5142169, 0, 0.222221926, 0)
+version.Size = UDim2.new(0.5142169, 0, 0.158729807, 0)
 version.Visible = true
 version.Name = "version"
 version.Parent = credits
+
+local credit2 = Instance.new("TextBox")
+credit2.Font = Enum.Font.Unknown
+credit2.Text = "https://github.com/SoBloxsy/D3VF3X"
+credit2.TextColor3 = Color3.new(1, 1, 1)
+credit2.TextScaled = true
+credit2.TextSize = 14
+credit2.TextWrapped = true
+credit2.BackgroundColor3 = Color3.new(1, 1, 1)
+credit2.BackgroundTransparency = 1
+credit2.BorderSizePixel = 0
+credit2.Position = UDim2.new(0.100840315, 0, 0.646241903, 0)
+credit2.Size = UDim2.new(0.803212881, 0, 0.179621905, 0)
+credit2.Visible = true
+credit2.Name = "credit2"
+credit2.Parent = credits
 
 local explorerbtn = Instance.new("TextButton")
 explorerbtn.Font = Enum.Font.GothamMedium
@@ -666,7 +681,7 @@ buttons.Name = "buttons"
 buttons.Parent = explorer
 
 local dropchild = Instance.new("ImageButton")
-dropchild.Image = "rbxassetid://3944689656"
+dropchild.Image = "rbxasset://studio_svg_textures/Lua/Localization/Dark/Large/ImportCSV.png"
 dropchild.ScaleType = Enum.ScaleType.Fit
 dropchild.BackgroundColor3 = Color3.new(1, 1, 1)
 dropchild.BackgroundTransparency = 1
@@ -691,7 +706,7 @@ refresh.Name = "refresh"
 refresh.Parent = buttons
 
 local setparent = Instance.new("ImageButton")
-setparent.Image = "rbxassetid://4503342956"
+setparent.Image = "rbxasset://studio_svg_textures/Lua/Localization/Dark/Large/ExportCSV.png"
 setparent.ScaleType = Enum.ScaleType.Fit
 setparent.BackgroundColor3 = Color3.new(1, 1, 1)
 setparent.BackgroundTransparency = 1
@@ -752,10 +767,6 @@ uipadding_5.PaddingRight = UDim.new(0, 6)
 uipadding_5.PaddingTop = UDim.new(0, 6)
 uipadding_5.Parent = frame
 
-local uicorner = Instance.new("UICorner")
-uicorner.CornerRadius = UDim.new(0, 4)
-uicorner.Parent = frame
-
 local main = Instance.new("LocalScript")
 main.Name = "main"
 main.Parent = frame
@@ -763,6 +774,34 @@ main.Parent = frame
 local f3xfunctions = Instance.new("ModuleScript")
 f3xfunctions.Name = "f3xfunctions"
 f3xfunctions.Parent = main
+
+local helper = Instance.new("TextLabel")
+helper.Font = Enum.Font.SourceSans
+helper.Text = "whole time im over here"
+helper.TextColor3 = Color3.new(1, 1, 1)
+helper.TextSize = 14
+helper.AnchorPoint = Vector2.new(0.5, 0)
+helper.AutomaticSize = Enum.AutomaticSize.X
+helper.BackgroundColor3 = Color3.new(0.133333, 0.133333, 0.133333)
+helper.BorderSizePixel = 0
+helper.Position = UDim2.new(0.502695441, 0, -0.10266161, 0)
+helper.Size = UDim2.new(0, 73, 0, 15)
+helper.Visible = true
+helper.Name = "helper"
+helper.Parent = frame
+
+local uicorner = Instance.new("UICorner")
+uicorner.CornerRadius = UDim.new(0, 4)
+uicorner.Parent = helper
+
+local uipadding_6 = Instance.new("UIPadding")
+uipadding_6.PaddingLeft = UDim.new(0, 5)
+uipadding_6.PaddingRight = UDim.new(0, 5)
+uipadding_6.Parent = helper
+
+local uicorner_2 = Instance.new("UICorner")
+uicorner_2.CornerRadius = UDim.new(0, 4)
+uicorner_2.Parent = frame
 
 local popupmenu = Instance.new("BillboardGui")
 popupmenu.Active = true
@@ -810,12 +849,12 @@ kill_2.Visible = true
 kill_2.Name = "kill"
 kill_2.Parent = frame_2
 
-local uipadding_6 = Instance.new("UIPadding")
-uipadding_6.PaddingBottom = UDim.new(0.04500000178813934, 0)
-uipadding_6.PaddingLeft = UDim.new(0.04500000178813934, 0)
-uipadding_6.PaddingRight = UDim.new(0.04500000178813934, 0)
-uipadding_6.PaddingTop = UDim.new(0.04500000178813934, 0)
-uipadding_6.Parent = frame_2
+local uipadding_7 = Instance.new("UIPadding")
+uipadding_7.PaddingBottom = UDim.new(0.04500000178813934, 0)
+uipadding_7.PaddingLeft = UDim.new(0.04500000178813934, 0)
+uipadding_7.PaddingRight = UDim.new(0.04500000178813934, 0)
+uipadding_7.PaddingTop = UDim.new(0.04500000178813934, 0)
+uipadding_7.Parent = frame_2
 
 local punish_2 = Instance.new("TextButton")
 punish_2.Font = Enum.Font.GothamBold
@@ -868,15 +907,15 @@ local modules = {
 	[f3xfunctions] = function()
 		local F3XFUNCTIONS = {}
 		
-		F3XFUNCTIONS.version = 0.6
+		F3XFUNCTIONS.version = 0.7
 		
 		F3XFUNCTIONS.f3xsettings = {
 			[1] = {'HDMODE', false},
 			[2] = {'K3KMODE', true}
 		}
 		
-		function notify(txt)
-			print(txt)
+		function F3XFUNCTIONS.notify(txt)
+			 print(txt)
 		end
 		
 		function F3XFUNCTIONS.get_f3x()
@@ -893,7 +932,7 @@ local modules = {
 			if game.CreatorId ~= 1726662956 then --normal
 				f3x = F3XFUNCTIONS.get_f3x()
 				if f3x == nil and F3XFUNCTIONS.f3xsettings[2][2] == false then
-					notify('Couldnt find F3X tool')
+					F3XFUNCTIONS.notify('Couldnt find F3X tool')
 					return	
 				elseif f3x == nil and F3XFUNCTIONS.f3xsettings[2][2] == true then
 					command = ";btools"
@@ -907,7 +946,7 @@ local modules = {
 			else
 				f3x = F3XFUNCTIONS.get_f3x() --monkey
 				if f3x == nil then
-					notify('Couldnt find F3X tool')
+					F3XFUNCTIONS.notify('Couldnt find F3X tool')
 					return
 				end
 		
@@ -1065,6 +1104,10 @@ task.spawn(function()
 	local pages = script.Parent.ScrollingFrame
 	local settingsp = pagemenu.settings
 	
+	function notify(txt)
+		script.Parent.helper.Text = txt
+	end
+	
 	
 	-- << DRAGGIFY >>
 	local UIS = game:GetService("UserInputService")
@@ -1136,6 +1179,7 @@ task.spawn(function()
 			if target ~= nil then
 				--if game.Players:GetPlayerFromCharacter(target.Parent) ~= nil then
 				menu.Adornee = target.Parent.HumanoidRootPart
+				notify("got 'em™")
 			end
 		end
 	end)
@@ -1144,7 +1188,7 @@ task.spawn(function()
 	
 	
 	script.Parent.ScrollingFrame.credits.version.Text = 'VERSION '..F3XFUNCTIONS.version
-	
+	script.Parent.title.Text = 'D3VF3X '..F3XFUNCTIONS.version
 	pages.creditbtn.MouseButton1Click:Connect(function()
 		pagemenu.UIPageLayout:JumpTo(pagemenu.credits)
 	end)
@@ -1186,12 +1230,13 @@ task.spawn(function()
 		color(settingsp.TOPK3KHUD, F3XFUNCTIONS.f3xsettings[2][2])
 	end)
 	
+	color(settingsp.HDMODE, F3XFUNCTIONS.f3xsettings[1][2])
+	color(settingsp.TOPK3KHUD, F3XFUNCTIONS.f3xsettings[2][2])
+	
 	-- << COMMANDS >>
 	
 	local commandpage = pagemenu.commandspage
 	local stringtxt = commandpage.player.Text
-	
-	--player commands
 	
 	function killplr(character, text)
 		for _, player in pairs(F3XFUNCTIONS.getPlayer(character, text)) do
@@ -1294,6 +1339,7 @@ task.spawn(function()
 	
 	commandpage.kill.MouseButton1Click:Connect(function()
 		killplr(nil, commandpage.player.Text)
+		notify("did they really deserve that? yes.")
 	end)
 	
 	commandpage.sink.MouseButton1Click:Connect(function()
@@ -1308,6 +1354,7 @@ task.spawn(function()
 	
 	commandpage.punish.MouseButton1Click:Connect(function()
 		punishplr(nil, commandpage.player.Text)
+		notify("did they really deserve that? yes.")
 	end)
 	
 	commandpage.ice.MouseButton1Click:Connect(function()
@@ -1316,6 +1363,7 @@ task.spawn(function()
 	
 	commandpage.burn.MouseButton1Click:Connect(function()
 		burnplr(nil, commandpage.player.Text)
+		notify("did they really deserve that? yes.")
 	end)
 	
 	--billboard
@@ -1326,12 +1374,13 @@ task.spawn(function()
 	
 	script.Parent.Parent.popupmenu.Frame.punish.MouseButton1Click:Connect(function()
 		punishplr(script.Parent.Parent.popupmenu.Adornee.Parent)
+		notify("gone")
 	
 	end)
 	
 	script.Parent.Parent.popupmenu.Frame.ice.MouseButton1Click:Connect(function()
 		iceplr(script.Parent.Parent.popupmenu.Adornee.Parent)
-	
+		notify("blud froze")
 	end)
 	
 	script.Parent.Parent.popupmenu.Frame.burn.MouseButton1Click:Connect(function()
@@ -1421,13 +1470,13 @@ task.spawn(function()
 	local Security = require(f3x.Core.Security)
 	local bound
 	local allowedlocations = Security.AllowedLocations[1]
-	local object = Instance
+	local object = nil
 	local oldsel = nil
 	local rename = pagemenu.explorer.buttons.rename
 	
 	
 	local function wipe()
-		for num, btn in ipairs(script.Parent:GetChildren()) do
+		for num, btn in ipairs(pagemenu.explorer.explorerscroll:GetChildren()) do
 			if btn:IsA('GuiButton') then
 				btn:Remove()
 			end
@@ -1513,7 +1562,9 @@ task.spawn(function()
 		end
 	end
 	
-	
+	rename.Focused:Connect(function()
+		notify("the name is set after you press enter")
+	end)
 	
 	rename.FocusLost:Connect(function()
 		F3XFUNCTIONS.SetName({object.obj.Value}, rename.Text)
@@ -1528,14 +1579,26 @@ task.spawn(function()
 	local tomove
 	
 	pagemenu.explorer.buttons.setparent.MouseButton1Click:Connect(function()
+		
 		if object ~= nil then
 			tomove = object
+			pagemenu.explorer.buttons.setparent.ImageColor3 = Color3.new(0, 0.666667, 1)
+			notify("now you gotta select where you want the object you just selected to go")
+		else
+			notify('bro you gotta select an item first')
 		end
+		
+		
 	end)
 	
 	pagemenu.explorer.buttons.dropchild.MouseButton1Click:Connect(function()
-		if object ~= nil then
-			F3XFUNCTIONS.setparent({tomove.obj.Value}, object.obj.Value)
+		
+		if object ~= nil and tomove ~= nil then
+			pagemenu.explorer.buttons.setparent.ImageColor3 = Color3.new(1, 1, 1)
+			F3XFUNCTIONS.setparent({tomove.obj.Value}, object:FindFirstChild('obj').Value)
+			notify("completed.")
+		else
+			notify("you gotta use the button next to this one first")
 		end
 		refresh()
 	end)
@@ -1543,7 +1606,12 @@ task.spawn(function()
 	pagemenu.explorer.buttons.setworkspace.MouseButton1Click:Connect(function()
 		if object ~= nil then
 			F3XFUNCTIONS.setparent({object.obj.Value}, workspace)
+			notify("moved to workspace")
+		else
+			notify('bro you gotta select something first')
 		end
 		refresh()
 	end)
+	
+	notify("yo im here to help you")
 end)
