@@ -19,7 +19,7 @@ d3_v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 d3_v.ResetOnSpawn = false
 d3_v.ZIndexBehavior = Enum.ZIndexBehavior.Global
 d3_v.Name = "D3V"
-d3_v.Parent = workspace
+d3_v.Parent = game.CoreGui
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
