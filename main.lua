@@ -10,6 +10,8 @@ if not game:IsLoaded() then
 	
 end
 
+--// Instances
+
 local d3_v = Instance.new("ScreenGui")
 d3_v.DisplayOrder = 1
 d3_v.IgnoreGuiInset = true
@@ -17,7 +19,7 @@ d3_v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 d3_v.ResetOnSpawn = false
 d3_v.ZIndexBehavior = Enum.ZIndexBehavior.Global
 d3_v.Name = "D3V"
-d3_v.Parent = game.CoreGui
+d3_v.Parent = workspace
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
