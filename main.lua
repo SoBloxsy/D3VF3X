@@ -10,16 +10,17 @@ if not game:IsLoaded() then
 	
 end
 
+
 --// Instances
 
-local d3_v = Instance.new("ScreenGui")
-d3_v.DisplayOrder = 1
-d3_v.IgnoreGuiInset = true
-d3_v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
-d3_v.ResetOnSpawn = false
-d3_v.ZIndexBehavior = Enum.ZIndexBehavior.Global
-d3_v.Name = "D3V"
-d3_v.Parent = game.CoreGui
+local d3v = Instance.new("ScreenGui")
+d3v.DisplayOrder = 1
+d3v.IgnoreGuiInset = true
+d3v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
+d3v.ResetOnSpawn = false
+d3v.ZIndexBehavior = Enum.ZIndexBehavior.Global
+d3v.Name = "d3v"
+d3v.Parent = Game.CoreGui
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -28,7 +29,7 @@ frame.BorderSizePixel = 0
 frame.Position = UDim2.new(0.5, 0, 0.5, 0)
 frame.Size = UDim2.new(0, 383, 0, 275)
 frame.Visible = true
-frame.Parent = d3_v
+frame.Parent = d3v
 
 local scrolling_frame = Instance.new("ScrollingFrame")
 scrolling_frame.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -247,7 +248,8 @@ credits_2.Parent = pagemenu
 
 local title_3 = Instance.new("TextLabel")
 title_3.Font = Enum.Font.GothamBlack
-title_3.Text = "D3VF3X"
+title_3.RichText = true
+title_3.Text = "D3V<font color="rgb(170, 0, 0)">F3X</font>"
 title_3.TextColor3 = Color3.new(1, 1, 1)
 title_3.TextScaled = true
 title_3.TextSize = 14
@@ -401,6 +403,22 @@ uigrid_layout.CellSize = UDim2.new(0, 114, 0, 35)
 uigrid_layout.SortOrder = Enum.SortOrder.LayoutOrder
 uigrid_layout.Parent = commandspage
 
+local bring = Instance.new("TextButton")
+bring.Font = Enum.Font.GothamMedium
+bring.Text = "bring"
+bring.TextColor3 = Color3.new(1, 1, 1)
+bring.TextSize = 14
+bring.BackgroundColor3 = Color3.new(0, 0, 0)
+bring.BackgroundTransparency = 0.800000011920929
+bring.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+bring.BorderSizePixel = 0
+bring.LayoutOrder = 2
+bring.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
+bring.Size = UDim2.new(0, 104, 0, 35)
+bring.Visible = true
+bring.Name = "bring"
+bring.Parent = commandspage
+
 local map = Instance.new("Frame")
 map.AnchorPoint = Vector2.new(0.5, 0.5)
 map.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -532,35 +550,51 @@ uipadding_3.Parent = settings
 
 local hdmode = Instance.new("TextButton")
 hdmode.Font = Enum.Font.GothamMedium
-hdmode.Text = "HD MODE"
+hdmode.Text = "HD ADMIN MODE"
 hdmode.TextColor3 = Color3.new(1, 1, 1)
 hdmode.TextSize = 14
 hdmode.BackgroundColor3 = Color3.new(0, 0, 0)
 hdmode.BackgroundTransparency = 0.800000011920929
 hdmode.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 hdmode.BorderSizePixel = 0
-hdmode.LayoutOrder = 1
+hdmode.LayoutOrder = 3
 hdmode.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
 hdmode.Size = UDim2.new(0, 104, 0, 35)
 hdmode.Visible = true
 hdmode.Name = "HDMODE"
 hdmode.Parent = settings
 
-local topk3_khud = Instance.new("TextButton")
-topk3_khud.Font = Enum.Font.GothamMedium
-topk3_khud.Text = "TOPK3K HUD"
-topk3_khud.TextColor3 = Color3.new(1, 1, 1)
-topk3_khud.TextSize = 14
-topk3_khud.BackgroundColor3 = Color3.new(0, 0, 0)
-topk3_khud.BackgroundTransparency = 0.800000011920929
-topk3_khud.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-topk3_khud.BorderSizePixel = 0
-topk3_khud.LayoutOrder = 1
-topk3_khud.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
-topk3_khud.Size = UDim2.new(0, 104, 0, 35)
-topk3_khud.Visible = true
-topk3_khud.Name = "TOPK3KHUD"
-topk3_khud.Parent = settings
+local playerhud = Instance.new("TextButton")
+playerhud.Font = Enum.Font.GothamMedium
+playerhud.Text = "TOPK3K HUD"
+playerhud.TextColor3 = Color3.new(1, 1, 1)
+playerhud.TextSize = 14
+playerhud.BackgroundColor3 = Color3.new(0, 0, 0)
+playerhud.BackgroundTransparency = 0.800000011920929
+playerhud.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+playerhud.BorderSizePixel = 0
+playerhud.LayoutOrder = 2
+playerhud.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
+playerhud.Size = UDim2.new(0, 104, 0, 35)
+playerhud.Visible = true
+playerhud.Name = "PLAYERHUD"
+playerhud.Parent = settings
+
+local helper = Instance.new("TextButton")
+helper.Font = Enum.Font.GothamMedium
+helper.Text = "HELPER"
+helper.TextColor3 = Color3.new(1, 1, 1)
+helper.TextSize = 14
+helper.BackgroundColor3 = Color3.new(0, 0, 0)
+helper.BackgroundTransparency = 0.800000011920929
+helper.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+helper.BorderSizePixel = 0
+helper.LayoutOrder = 1
+helper.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
+helper.Size = UDim2.new(0, 104, 0, 35)
+helper.Visible = true
+helper.Name = "HELPER"
+helper.Parent = settings
 
 local uipage_layout = Instance.new("UIPageLayout")
 uipage_layout.EasingStyle = Enum.EasingStyle.Cubic
@@ -776,29 +810,29 @@ local f3xfunctions = Instance.new("ModuleScript")
 f3xfunctions.Name = "f3xfunctions"
 f3xfunctions.Parent = main
 
-local helper = Instance.new("TextLabel")
-helper.Font = Enum.Font.SourceSans
-helper.Text = "whole time im over here"
-helper.TextColor3 = Color3.new(1, 1, 1)
-helper.TextSize = 14
-helper.AnchorPoint = Vector2.new(0.5, 0)
-helper.AutomaticSize = Enum.AutomaticSize.X
-helper.BackgroundColor3 = Color3.new(0.133333, 0.133333, 0.133333)
-helper.BorderSizePixel = 0
-helper.Position = UDim2.new(0.502695441, 0, -0.10266161, 0)
-helper.Size = UDim2.new(0, 73, 0, 15)
-helper.Visible = true
-helper.Name = "helper"
-helper.Parent = frame
+local helper_2 = Instance.new("TextLabel")
+helper_2.Font = Enum.Font.SourceSans
+helper_2.Text = "whole time im over here"
+helper_2.TextColor3 = Color3.new(1, 1, 1)
+helper_2.TextSize = 14
+helper_2.AnchorPoint = Vector2.new(0.5, 0)
+helper_2.AutomaticSize = Enum.AutomaticSize.X
+helper_2.BackgroundColor3 = Color3.new(0.133333, 0.133333, 0.133333)
+helper_2.BorderSizePixel = 0
+helper_2.Position = UDim2.new(0.502695441, 0, -0.10266161, 0)
+helper_2.Size = UDim2.new(0, 73, 0, 15)
+helper_2.Visible = true
+helper_2.Name = "helper"
+helper_2.Parent = frame
 
 local uicorner = Instance.new("UICorner")
 uicorner.CornerRadius = UDim.new(0, 4)
-uicorner.Parent = helper
+uicorner.Parent = helper_2
 
 local uipadding_6 = Instance.new("UIPadding")
 uipadding_6.PaddingLeft = UDim.new(0, 5)
 uipadding_6.PaddingRight = UDim.new(0, 5)
-uipadding_6.Parent = helper
+uipadding_6.Parent = helper_2
 
 local uicorner_2 = Instance.new("UICorner")
 uicorner_2.CornerRadius = UDim.new(0, 4)
@@ -815,7 +849,7 @@ popupmenu.StudsOffset = Vector3.new(4, 0, 0)
 popupmenu.ResetOnSpawn = true
 popupmenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 popupmenu.Name = "popupmenu"
-popupmenu.Parent = d3_v
+popupmenu.Parent = d3v
 
 local frame_2 = Instance.new("Frame")
 frame_2.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -912,7 +946,8 @@ local modules = {
 		
 		F3XFUNCTIONS.f3xsettings = {
 			[1] = {'HDMODE', false},
-			[2] = {'K3KMODE', true}
+			[2] = {'PLAYERHUD', true},
+			[3] = {'HELPER', true}
 		}
 		
 		function F3XFUNCTIONS.notify(txt)
@@ -1105,10 +1140,12 @@ task.spawn(function()
 	local pages = script.Parent.ScrollingFrame
 	local settingsp = pagemenu.settings
 	
+	script.Parent.Parent.Name= string.char(math.random(65, 65 + 25))
+	
 	function notify(txt)
 		script.Parent.helper.Text = txt
 	end
-	
+	Color3.fromRGB(170, 0, 0)
 	
 	-- << DRAGGIFY >>
 	local UIS = game:GetService("UserInputService")
@@ -1155,7 +1192,7 @@ task.spawn(function()
 	local mouse = game:GetService('Players').LocalPlayer:GetMouse()
 	--select player
 	mouse.Move:Connect(function(movement)
-		if F3XFUNCTIONS.getsetting('K3KMODE') == true then
+		if F3XFUNCTIONS.getsetting('PLAYERHUD') == true then
 			local target = mouse.Target
 			if target ~= nil and target.Parent:FindFirstChildOfClass('Humanoid') then
 				target = target.Parent
@@ -1175,7 +1212,7 @@ task.spawn(function()
 	
 	
 	mouse.Button2Down:Connect(function()
-		if F3XFUNCTIONS.getsetting('K3KMODE') == true then
+		if F3XFUNCTIONS.getsetting('PLAYERHUD') == true then
 			local target = mouse.Target
 			if target ~= nil then
 				--if game.Players:GetPlayerFromCharacter(target.Parent) ~= nil then
@@ -1215,9 +1252,9 @@ task.spawn(function()
 	
 	function color(btn, Value)
 		if Value == true then
-			btn.TextColor3 = Color3.new(0, 1, 0)
+			btn.BackgroundColor3 = Color3.new(0, 1, 0)
 		else
-			btn.TextColor3 = Color3.new(1, 0, 0)
+			btn.BackgroundColor3 = Color3.new(1, 0, 0)
 		end
 	end
 	
@@ -1226,13 +1263,20 @@ task.spawn(function()
 		color(settingsp.HDMODE, F3XFUNCTIONS.f3xsettings[1][2])
 	end)
 	
-	settingsp.TOPK3KHUD.MouseButton1Click:Connect(function()
+	settingsp.PLAYERHUD.MouseButton1Click:Connect(function()
 		F3XFUNCTIONS.f3xsettings[2][2] = not F3XFUNCTIONS.f3xsettings[2][2]
-		color(settingsp.TOPK3KHUD, F3XFUNCTIONS.f3xsettings[2][2])
+		color(settingsp.PLAYERHUD, F3XFUNCTIONS.f3xsettings[2][2])
+	end)
+	
+	settingsp.HELPER.MouseButton1Click:Connect(function()
+		F3XFUNCTIONS.f3xsettings[3][2] = not F3XFUNCTIONS.f3xsettings[3][2]
+		color(settingsp.HELPER, F3XFUNCTIONS.f3xsettings[3][2])
+		script.Parent.helper.Visible = F3XFUNCTIONS.f3xsettings[3][2]
 	end)
 	
 	color(settingsp.HDMODE, F3XFUNCTIONS.f3xsettings[1][2])
-	color(settingsp.TOPK3KHUD, F3XFUNCTIONS.f3xsettings[2][2])
+	color(settingsp.PLAYERHUD, F3XFUNCTIONS.f3xsettings[2][2])
+	color(settingsp.HELPER, F3XFUNCTIONS.f3xsettings[3][2])
 	
 	-- << COMMANDS >>
 	
@@ -1338,6 +1382,29 @@ task.spawn(function()
 		end
 	end
 	
+	function bringplr(character, text)
+		for _, player in pairs(F3XFUNCTIONS.getPlayer(character, text)) do
+			local char = game:GetService('Players')[player].Character
+			if char then
+				local tomove = {}
+				for _, part in pairs(char:GetDescendants()) do
+					local localchar = game.Players.LocalPlayer.Character
+					if part:IsA('BasePart') then
+						local offsett = part.CFrame:Inverse() * char.HumanoidRootPart.CFrame
+						table.insert(tomove, 
+							{["Part"] = part, ["CFrame"] = offsett*(localchar.HumanoidRootPart.CFrame*CFrame.new(0, 0, -2))}
+						)
+					end
+	
+				end
+				F3XFUNCTIONS.make_request({
+					[1] = 'SyncMove',
+					[2] = tomove
+				})
+			end
+		end
+	end 
+	
 	commandpage.kill.MouseButton1Click:Connect(function()
 		killplr(nil, commandpage.player.Text)
 		notify("did they really deserve that? yes.")
@@ -1365,6 +1432,10 @@ task.spawn(function()
 	commandpage.burn.MouseButton1Click:Connect(function()
 		burnplr(nil, commandpage.player.Text)
 		notify("did they really deserve that? yes.")
+	end)
+	
+	commandpage.bring.MouseButton1Click:Connect(function()
+	bringplr(nil, commandpage.player.Text)
 	end)
 	
 	--billboard
