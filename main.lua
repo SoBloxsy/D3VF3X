@@ -20,7 +20,7 @@ d3v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 d3v.ResetOnSpawn = false
 d3v.ZIndexBehavior = Enum.ZIndexBehavior.Global
 d3v.Name = "d3v"
-d3v.Parent = Game.CoreGui
+d3v.Parent = game.Players.LocalPlayer.PlayerGui
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -248,8 +248,7 @@ credits_2.Parent = pagemenu
 
 local title_3 = Instance.new("TextLabel")
 title_3.Font = Enum.Font.GothamBlack
-title_3.RichText = true
-title_3.Text = "D3V<font color="rgb(170, 0, 0)">F3X</font>"
+title_3.Text = "D3VF3X"
 title_3.TextColor3 = Color3.new(1, 1, 1)
 title_3.TextScaled = true
 title_3.TextSize = 14
