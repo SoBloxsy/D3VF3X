@@ -1,4 +1,4 @@
--- v 7.0
+-- v 0.85
 COREGUI = game:GetService("CoreGui")
 if not game:IsLoaded() then
 	local notLoaded = Instance.new("Message")
@@ -291,6 +291,7 @@ commandspage.Name = "commandspage"
 commandspage.Parent = pagemenu
 
 local player = Instance.new("TextBox")
+player.CursorPosition = -1
 player.Font = Enum.Font.GothamBlack
 player.PlaceholderText = "username"
 player.Text = ""
@@ -342,7 +343,7 @@ sink.BackgroundColor3 = Color3.new(0, 0, 0)
 sink.BackgroundTransparency = 0.800000011920929
 sink.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 sink.BorderSizePixel = 0
-sink.LayoutOrder = 2
+sink.LayoutOrder = 3
 sink.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
 sink.Size = UDim2.new(0, 104, 0, 35)
 sink.Visible = true
@@ -358,7 +359,7 @@ punish.BackgroundColor3 = Color3.new(0, 0, 0)
 punish.BackgroundTransparency = 0.800000011920929
 punish.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 punish.BorderSizePixel = 0
-punish.LayoutOrder = 2
+punish.LayoutOrder = 4
 punish.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
 punish.Size = UDim2.new(0, 104, 0, 35)
 punish.Visible = true
@@ -370,11 +371,12 @@ ice.Font = Enum.Font.GothamMedium
 ice.Text = "ice"
 ice.TextColor3 = Color3.new(1, 1, 1)
 ice.TextSize = 14
+ice.Modal = true
 ice.BackgroundColor3 = Color3.new(0, 0, 0)
 ice.BackgroundTransparency = 0.800000011920929
 ice.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 ice.BorderSizePixel = 0
-ice.LayoutOrder = 2
+ice.LayoutOrder = 5
 ice.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
 ice.Size = UDim2.new(0, 104, 0, 35)
 ice.Visible = true
@@ -390,7 +392,7 @@ burn.BackgroundColor3 = Color3.new(0, 0, 0)
 burn.BackgroundTransparency = 0.800000011920929
 burn.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 burn.BorderSizePixel = 0
-burn.LayoutOrder = 2
+burn.LayoutOrder = 6
 burn.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
 burn.Size = UDim2.new(0, 104, 0, 35)
 burn.Visible = true
@@ -411,12 +413,34 @@ bring.BackgroundColor3 = Color3.new(0, 0, 0)
 bring.BackgroundTransparency = 0.800000011920929
 bring.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 bring.BorderSizePixel = 0
-bring.LayoutOrder = 2
+bring.LayoutOrder = 7
 bring.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
 bring.Size = UDim2.new(0, 104, 0, 35)
 bring.Visible = true
 bring.Name = "bring"
 bring.Parent = commandspage
+
+local player2 = Instance.new("TextBox")
+player2.CursorPosition = -1
+player2.Font = Enum.Font.GothamBlack
+player2.PlaceholderText = "bring to (default: you)"
+player2.Text = ""
+player2.TextColor3 = Color3.new(1, 1, 1)
+player2.TextScaled = true
+player2.TextSize = 14
+player2.TextWrapped = true
+player2.BackgroundColor3 = Color3.new(0, 0, 0)
+player2.BackgroundTransparency = 0.800000011920929
+player2.BorderSizePixel = 0
+player2.LayoutOrder = 8
+player2.Size = UDim2.new(0, 233, 0, 30)
+player2.Visible = true
+player2.Name = "player2"
+player2.Parent = commandspage
+
+local uitext_size_constraint_2 = Instance.new("UITextSizeConstraint")
+uitext_size_constraint_2.MaxTextSize = 16
+uitext_size_constraint_2.Parent = player2
 
 local map = Instance.new("Frame")
 map.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -769,9 +793,9 @@ rename.Visible = true
 rename.Name = "rename"
 rename.Parent = buttons
 
-local uitext_size_constraint_2 = Instance.new("UITextSizeConstraint")
-uitext_size_constraint_2.MaxTextSize = 14
-uitext_size_constraint_2.Parent = rename
+local uitext_size_constraint_3 = Instance.new("UITextSizeConstraint")
+uitext_size_constraint_3.MaxTextSize = 14
+uitext_size_constraint_3.Parent = rename
 
 local uilist_layout_3 = Instance.new("UIListLayout")
 uilist_layout_3.Padding = UDim.new(0, 2)
@@ -941,7 +965,7 @@ local modules = {
 	[f3xfunctions] = function()
 		local F3XFUNCTIONS = {}
 		
-		F3XFUNCTIONS.version = 0.7
+		F3XFUNCTIONS.version = 0.85
 		
 		F3XFUNCTIONS.f3xsettings = {
 			[1] = {'HDMODE', false},
@@ -950,7 +974,7 @@ local modules = {
 		}
 		
 		function F3XFUNCTIONS.notify(txt)
-			 print(txt)
+			print(txt)
 		end
 		
 		function F3XFUNCTIONS.get_f3x()
@@ -1095,6 +1119,14 @@ local modules = {
 					for num, plr in ipairs(game.Players:GetChildren()) do
 						table.insert(player, plr.Name)
 					end
+				elseif string.lower(text) == 'me' then
+					table.insert(player, game.Players.LocalPlayer.Name)
+				elseif string.lower(text) == 'others' then
+					for num, plr in ipairs(game.Players:GetChildren()) do
+						if plr.Name ~= game.Players.LocalPlayer.Name then
+							table.insert(player, plr.Name)
+						end
+					end
 				else
 					for Int, Index in pairs(game.Players:GetChildren()) do
 						if string.match(string.lower(Index.Name), string.lower(text)) then
@@ -1214,12 +1246,17 @@ task.spawn(function()
 		if F3XFUNCTIONS.getsetting('PLAYERHUD') == true then
 			local target = mouse.Target
 			if target ~= nil then
-				--if game.Players:GetPlayerFromCharacter(target.Parent) ~= nil then
-				menu.Adornee = target.Parent.HumanoidRootPart
-				notify("got 'em™")
+				if game.Players:GetPlayerFromCharacter(target.Parent) ~= nil then
+					menu.Adornee = target.Parent.HumanoidRootPart
+					menu.Enabled = true
+					commandpage.player.Text = target.Parent.Name
+					notify("got 'em™")
+				end
 			end
 		end
 	end)
+	
+	menu.Enabled = false
 	-- << PAGES >>
 	
 	
@@ -1387,7 +1424,13 @@ task.spawn(function()
 			if char then
 				local tomove = {}
 				for _, part in pairs(char:GetDescendants()) do
-					local localchar = game.Players.LocalPlayer.Character
+					local localchar
+					if commandpage.player2.Text == '' then
+						localchar = game.Players.LocalPlayer.Character
+					else
+						localchar = game:GetService('Players')[F3XFUNCTIONS.getPlayer(nil, commandpage.player2.Text)[1]].Character
+					end
+	
 					if part:IsA('BasePart') then
 						local offsett = part.CFrame:Inverse() * char.HumanoidRootPart.CFrame
 						table.insert(tomove, 
@@ -1434,29 +1477,30 @@ task.spawn(function()
 	end)
 	
 	commandpage.bring.MouseButton1Click:Connect(function()
-	bringplr(nil, commandpage.player.Text)
+		bringplr(nil, commandpage.player.Text)
 	end)
 	
 	--billboard
 	script.Parent.Parent.popupmenu.Frame.kill.MouseButton1Click:Connect(function()
 		killplr(script.Parent.Parent.popupmenu.Adornee.Parent)
-	
+		menu.Enabled = false
 	end)
 	
 	script.Parent.Parent.popupmenu.Frame.punish.MouseButton1Click:Connect(function()
 		punishplr(script.Parent.Parent.popupmenu.Adornee.Parent)
 		notify("gone")
-	
+		menu.Enabled = false
 	end)
 	
 	script.Parent.Parent.popupmenu.Frame.ice.MouseButton1Click:Connect(function()
 		iceplr(script.Parent.Parent.popupmenu.Adornee.Parent)
 		notify("blud froze")
+		menu.Enabled = false
 	end)
 	
 	script.Parent.Parent.popupmenu.Frame.burn.MouseButton1Click:Connect(function()
 		burnplr(script.Parent.Parent.popupmenu.Adornee.Parent)
-	
+		menu.Enabled = false
 	end)
 	
 	--map commands
@@ -1650,7 +1694,7 @@ task.spawn(function()
 	local tomove
 	
 	pagemenu.explorer.buttons.setparent.MouseButton1Click:Connect(function()
-		
+	
 		if object ~= nil then
 			tomove = object
 			pagemenu.explorer.buttons.setparent.ImageColor3 = Color3.new(0, 0.666667, 1)
@@ -1658,12 +1702,12 @@ task.spawn(function()
 		else
 			notify('bro you gotta select an item first')
 		end
-		
-		
+	
+	
 	end)
 	
 	pagemenu.explorer.buttons.dropchild.MouseButton1Click:Connect(function()
-		
+	
 		if object ~= nil and tomove ~= nil then
 			pagemenu.explorer.buttons.setparent.ImageColor3 = Color3.new(1, 1, 1)
 			F3XFUNCTIONS.setparent({tomove.obj.Value}, object:FindFirstChild('obj').Value)
