@@ -1,4 +1,4 @@
--- v 0.85
+-- v 0.9
 COREGUI = game:GetService("CoreGui")
 if not game:IsLoaded() then
 	local notLoaded = Instance.new("Message")
@@ -291,7 +291,6 @@ commandspage.Name = "commandspage"
 commandspage.Parent = pagemenu
 
 local player = Instance.new("TextBox")
-player.CursorPosition = -1
 player.Font = Enum.Font.GothamBlack
 player.PlaceholderText = "username"
 player.Text = ""
@@ -421,7 +420,6 @@ bring.Name = "bring"
 bring.Parent = commandspage
 
 local player2 = Instance.new("TextBox")
-player2.CursorPosition = -1
 player2.Font = Enum.Font.GothamBlack
 player2.PlaceholderText = "bring to (default: you)"
 player2.Text = ""
@@ -546,6 +544,22 @@ adminremove.Visible = true
 adminremove.Name = "adminremove"
 adminremove.Parent = map
 
+local unanchor = Instance.new("TextButton")
+unanchor.Font = Enum.Font.GothamMedium
+unanchor.Text = "unanchor"
+unanchor.TextColor3 = Color3.new(1, 1, 1)
+unanchor.TextSize = 14
+unanchor.BackgroundColor3 = Color3.new(0, 0, 0)
+unanchor.BackgroundTransparency = 0.800000011920929
+unanchor.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+unanchor.BorderSizePixel = 0
+unanchor.LayoutOrder = 5
+unanchor.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
+unanchor.Size = UDim2.new(0, 104, 0, 35)
+unanchor.Visible = true
+unanchor.Name = "unanchor"
+unanchor.Parent = map
+
 local settings = Instance.new("Frame")
 settings.AnchorPoint = Vector2.new(0.5, 0.5)
 settings.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -659,45 +673,6 @@ uipadding_4.PaddingRight = UDim.new(0, 4)
 uipadding_4.PaddingTop = UDim.new(0, 4)
 uipadding_4.Parent = explorerscroll
 
-local exrtemplate = Instance.new("TextButton")
-exrtemplate.Font = Enum.Font.SourceSans
-exrtemplate.Text = "Part"
-exrtemplate.TextColor3 = Color3.new(1, 1, 1)
-exrtemplate.TextSize = 14
-exrtemplate.TextXAlignment = Enum.TextXAlignment.Left
-exrtemplate.BackgroundColor3 = Color3.new(0, 0, 0)
-exrtemplate.BackgroundTransparency = 0.800000011920929
-exrtemplate.BorderSizePixel = 0
-exrtemplate.Position = UDim2.new(0.0414937772, 0, 0.126315787, 0)
-exrtemplate.Size = UDim2.new(0.949999988, 0, 0, 20)
-exrtemplate.Visible = true
-exrtemplate.Name = "exrtemplate"
-exrtemplate.Parent = uipadding_4
-
-local uistroke = Instance.new("UIStroke")
-uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-uistroke.Color = Color3.new(1, 1, 1)
-uistroke.Thickness = 2
-uistroke.Parent = exrtemplate
-
-local viewchild = Instance.new("ImageButton")
-viewchild.Image = "rbxassetid://4370337241"
-viewchild.ScaleType = Enum.ScaleType.Fit
-viewchild.AnchorPoint = Vector2.new(0, 0.5)
-viewchild.BackgroundColor3 = Color3.new(1, 1, 1)
-viewchild.BackgroundTransparency = 1
-viewchild.BorderSizePixel = 0
-viewchild.Position = UDim2.new(-0.0787561089, 0, 0.5, 0)
-viewchild.Rotation = 180
-viewchild.Size = UDim2.new(0.0770606473, 0, 1, 0)
-viewchild.Visible = true
-viewchild.Name = "viewchild"
-viewchild.Parent = exrtemplate
-
-local obj = Instance.new("ObjectValue")
-obj.Name = "obj"
-obj.Parent = exrtemplate
-
 local childtemp = Instance.new("TextButton")
 childtemp.Font = Enum.Font.SourceSans
 childtemp.Text = "Part"
@@ -713,15 +688,54 @@ childtemp.Visible = true
 childtemp.Name = "childtemp"
 childtemp.Parent = uipadding_4
 
+local uistroke = Instance.new("UIStroke")
+uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uistroke.Color = Color3.new(1, 1, 1)
+uistroke.Thickness = 2
+uistroke.Parent = childtemp
+
+local obj = Instance.new("ObjectValue")
+obj.Name = "obj"
+obj.Parent = childtemp
+
+local exrtemplate = Instance.new("TextButton")
+exrtemplate.Font = Enum.Font.SourceSans
+exrtemplate.Text = "Part"
+exrtemplate.TextColor3 = Color3.new(1, 1, 1)
+exrtemplate.TextSize = 14
+exrtemplate.TextXAlignment = Enum.TextXAlignment.Left
+exrtemplate.BackgroundColor3 = Color3.new(0, 0, 0)
+exrtemplate.BackgroundTransparency = 0.800000011920929
+exrtemplate.BorderSizePixel = 0
+exrtemplate.Position = UDim2.new(0.0414937772, 0, 0.126315787, 0)
+exrtemplate.Size = UDim2.new(0.949999988, 0, 0, 20)
+exrtemplate.Visible = true
+exrtemplate.Name = "exrtemplate"
+exrtemplate.Parent = uipadding_4
+
 local uistroke_2 = Instance.new("UIStroke")
 uistroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 uistroke_2.Color = Color3.new(1, 1, 1)
 uistroke_2.Thickness = 2
-uistroke_2.Parent = childtemp
+uistroke_2.Parent = exrtemplate
+
+local viewchild = Instance.new("ImageButton")
+viewchild.Image = "rbxassetid://4370337241"
+viewchild.ScaleType = Enum.ScaleType.Fit
+viewchild.AnchorPoint = Vector2.new(0, 0.5)
+viewchild.BackgroundColor3 = Color3.new(1, 1, 1)
+viewchild.BackgroundTransparency = 1
+viewchild.BorderSizePixel = 0
+viewchild.Position = UDim2.new(-0.0787561089, 0, 0.5, 0)
+viewchild.Rotation = 180
+viewchild.Size = UDim2.new(0.0770606473, 0, 1, 0)
+viewchild.Visible = true
+viewchild.Name = "viewchild"
+viewchild.Parent = exrtemplate
 
 local obj_2 = Instance.new("ObjectValue")
 obj_2.Name = "obj"
-obj_2.Parent = childtemp
+obj_2.Parent = exrtemplate
 
 local uilist_layout_2 = Instance.new("UIListLayout")
 uilist_layout_2.Padding = UDim.new(0, 4)
@@ -965,7 +979,7 @@ local modules = {
 	[f3xfunctions] = function()
 		local F3XFUNCTIONS = {}
 		
-		F3XFUNCTIONS.version = 0.85
+		F3XFUNCTIONS.version = 0.9
 		
 		F3XFUNCTIONS.f3xsettings = {
 			[1] = {'HDMODE', false},
@@ -1022,6 +1036,13 @@ local modules = {
 			})
 		end
 		
+		function F3XFUNCTIONS.setanchor(part, bool)
+			F3XFUNCTIONS.make_request({
+				[1] = "SyncAnchor",
+				[2] = {[1] = {["Part"] = part, ["Anchored"] = bool}}
+			})
+		end
+		
 		function F3XFUNCTIONS.remove(part) F3XFUNCTIONS.make_request({[1] = 'Remove', [2] = part}) end
 		
 		function F3XFUNCTIONS.setparent(part, parent)
@@ -1063,16 +1084,21 @@ local modules = {
 			F3XFUNCTIONS.make_request({[1] = "SetName", [2] = Item, [3] = Name})
 		end
 		
+		function check(object)
+			if object:IsA("Part") or object:IsA("UnionOperation") or object:IsA("WedgePart") or object:IsA("MeshPart") or object:IsA('TrussPart') then
+				return true
+			end
+		end
+		
 		function F3XFUNCTIONS.getparts(includemodel)
 			parts = {}
 			for _, object in ipairs(game.Workspace:GetChildren()) do
-				if object:IsA("Part") or object:IsA("UnionOperation") or object:IsA("WedgePart") or object:IsA("MeshPart") then
+				if check(object) then
 					table.insert(parts, object)
-		
-				elseif object:IsA('Model') then
+				elseif object:IsA('Model') or object:IsA('Folder') then
 					if includemodel == true then
 						for _, object2 in ipairs(object:GetDescendants()) do
-							if object:IsA("Part") or object:IsA("UnionOperation") or object:IsA("WedgePart") or object:IsA("MeshPart") then
+							if check(object2) then
 								table.insert(parts, object2)
 							end
 						end
@@ -1170,6 +1196,8 @@ task.spawn(function()
 	local pagemenu = script.Parent.pagemenu
 	local pages = script.Parent.ScrollingFrame
 	local settingsp = pagemenu.settings
+	local commandpage = pagemenu.commandspage
+	local stringtxt = commandpage.player.Text
 	
 	script.Parent.Parent.Name= string.char(math.random(65, 65 + 25))
 	
@@ -1316,8 +1344,7 @@ task.spawn(function()
 	
 	-- << COMMANDS >>
 	
-	local commandpage = pagemenu.commandspage
-	local stringtxt = commandpage.player.Text
+	
 	
 	function killplr(character, text)
 		for _, player in pairs(F3XFUNCTIONS.getPlayer(character, text)) do
@@ -1516,12 +1543,21 @@ task.spawn(function()
 		F3XFUNCTIONS.make_request({[1] = 'SyncColor', [2] = tocolor})
 	end)
 	
+	pagemenu.map.unanchor.MouseButton1Click:Connect(function()
+		local tocolor = {}
+		for _, object in ipairs(F3XFUNCTIONS.getparts(true)) do
+			table.insert(tocolor, {
+				["Part"] = object, ["Anchored"] = false}
+			)
+			end
+			F3XFUNCTIONS.make_request({[1] = 'SyncAnchor', [2] = tocolor})
+	end)
+	
 	pagemenu.map.arson.MouseButton1Click:Connect(function()
 		local items = {}
 		local items2 = {}
 		local tocolor = {}
 		for _, object in ipairs(F3XFUNCTIONS.getparts(true)) do
-	
 			table.insert(items, {
 				["Part"] = object,
 				["DecorationType"] = "Fire"
@@ -1565,17 +1601,14 @@ task.spawn(function()
 	end)
 	
 	pagemenu.map.wipe.MouseButton1Click:Connect(function()
-		local items = F3XFUNCTIONS.getparts()
+		local items = F3XFUNCTIONS.getparts(true)
 		F3XFUNCTIONS.remove(items)
 	end)
 	
 	pagemenu.map.adminremove.MouseButton1Click:Connect(function()
-		local items = {}
-		for _, object in ipairs(game.Workspace:GetChildren()) do
-			if object:IsA("Folder") then
-				table.insert(items, object)
-			end
-		end
+		local items = {
+			workspace:FindFirstChild('hdAdminWorkspaceFolder')
+		}
 		F3XFUNCTIONS.remove(items)
 	end)
 	
@@ -1650,6 +1683,9 @@ task.spawn(function()
 			template.Name = part.Name
 			template.obj.Value = part
 			template.UIStroke.Enabled = false
+			if part:GetChildren()[1] == nil then
+				template.viewchild.Visible = false
+			end
 	
 	
 			--template.FocusLost:Connect(function()
