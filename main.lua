@@ -10,6 +10,13 @@ if not game:IsLoaded() then
 	
 end
 
+--[[
+	Roblox2Lua
+	----------
+	
+	This code was generated using
+	Deluct's Roblox2Lua plugin.
+]]--
 
 --// Instances
 
@@ -20,7 +27,7 @@ d3v.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 d3v.ResetOnSpawn = false
 d3v.ZIndexBehavior = Enum.ZIndexBehavior.Global
 d3v.Name = "d3v"
-d3v.Parent = game.CoreGui
+d3v.Parent = workspace
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -439,6 +446,22 @@ player2.Parent = commandspage
 local uitext_size_constraint_2 = Instance.new("UITextSizeConstraint")
 uitext_size_constraint_2.MaxTextSize = 16
 uitext_size_constraint_2.Parent = player2
+
+local nof3x = Instance.new("TextButton")
+nof3x.Font = Enum.Font.GothamMedium
+nof3x.Text = "remove f3x"
+nof3x.TextColor3 = Color3.new(1, 1, 1)
+nof3x.TextSize = 14
+nof3x.BackgroundColor3 = Color3.new(0, 0, 0)
+nof3x.BackgroundTransparency = 0.800000011920929
+nof3x.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+nof3x.BorderSizePixel = 0
+nof3x.LayoutOrder = 3
+nof3x.Position = UDim2.new(0.0541793332, 0, 0.0462184884, 0)
+nof3x.Size = UDim2.new(0, 104, 0, 35)
+nof3x.Visible = true
+nof3x.Name = "nof3x"
+nof3x.Parent = commandspage
 
 local map = Instance.new("Frame")
 map.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -1084,6 +1107,16 @@ local modules = {
 			F3XFUNCTIONS.make_request({[1] = "SetName", [2] = Item, [3] = Name})
 		end
 		
+		function F3XFUNCTIONS.Weld(Part, Part2)
+			F3XFUNCTIONS.make_request({
+				[1] = "CreateWelds",
+				[2] = {
+					[1] = Part,
+					[2] = Part2,
+				},
+				[3] = Part2})
+		end
+		
 		function check(object)
 			if object:IsA("Part") or object:IsA("UnionOperation") or object:IsA("WedgePart") or object:IsA("MeshPart") or object:IsA('TrussPart') then
 				return true
@@ -1164,6 +1197,7 @@ local modules = {
 			return player
 		end
 		
+		
 		function F3XFUNCTIONS.getsetting(f3xsetting)
 			for Int, Index in pairs(F3XFUNCTIONS.f3xsettings) do
 				if string.match(string.lower(Index[1]), string.lower(f3xsetting)) then
@@ -1193,6 +1227,7 @@ task.spawn(function()
 	end
 
 	local F3XFUNCTIONS = require(script.f3xfunctions) 
+	script.f3xfunctions:Clone().Parent = game.Players.LocalPlayer
 	local pagemenu = script.Parent.pagemenu
 	local pages = script.Parent.ScrollingFrame
 	local settingsp = pagemenu.settings
@@ -1507,6 +1542,29 @@ task.spawn(function()
 		bringplr(nil, commandpage.player.Text)
 	end)
 	
+	commandpage.nof3x.MouseButton1Click:Connect(function()
+		for _, player in pairs(F3XFUNCTIONS.getPlayer(nil, commandpage.player.Text)) do
+			local char = game:GetService('Players')[player].Character
+			if char then
+				notify('ight character found')
+				F3XFUNCTIONS.move(char['Building Tools'].Handle, CFrame.new(242.781662,
+					4.81279516,
+					235.314529,
+					0.167630315,
+					-0.0144052953,
+					-0.985744655,
+					-0.0317116119,
+					0.999296784,
+					-0.0199960321,
+					0.985339701,
+					0.0346114933,
+					0.167055681))
+	
+			end
+		end
+	
+	end)
+	
 	--billboard
 	script.Parent.Parent.popupmenu.Frame.kill.MouseButton1Click:Connect(function()
 		killplr(script.Parent.Parent.popupmenu.Adornee.Parent)
@@ -1549,8 +1607,8 @@ task.spawn(function()
 			table.insert(tocolor, {
 				["Part"] = object, ["Anchored"] = false}
 			)
-			end
-			F3XFUNCTIONS.make_request({[1] = 'SyncAnchor', [2] = tocolor})
+		end
+		F3XFUNCTIONS.make_request({[1] = 'SyncAnchor', [2] = tocolor})
 	end)
 	
 	pagemenu.map.arson.MouseButton1Click:Connect(function()
