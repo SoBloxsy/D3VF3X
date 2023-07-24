@@ -10,14 +10,6 @@ if not game:IsLoaded() then
 	
 end
 
---[[
-	Roblox2Lua
-	----------
-	
-	This code was generated using
-	Deluct's Roblox2Lua plugin.
-]]--
-
 --// Instances
 
 local d3v = Instance.new("ScreenGui")
